@@ -1,0 +1,46 @@
+.module-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px;
+}
+.module-button {
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    transition: background-color 0.3s;
+}
+.module-button:hover {
+    background-color: #0056b3;
+}
+.module-button span {
+    margin-right: 10px;
+}
+
+.btn-floating {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.navegacion {
+    background-color: #4e5965; /* Gris oscuro */
+}
+
+.footer {
+    background-color: #4e5965; /* Gris oscuro */
+    padding: 20px 0;
+}
+.footer-logo {
+    max-width: 100%;
+    height: auto;
+}
