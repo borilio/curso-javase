@@ -8,12 +8,12 @@ En esta parte troncal del curso, exploraremos los fundamentos y conceptos esenci
 
 | Descripción                   | Documento                                        |
 | ----------------------------- | ------------------------------------------------- |
-| 00 ⚙️ Introducción e Instalación | [Enlace](docs/md/troncal/00-intro.md) |
-| 01 🗃️ Tipos de datos | [Enlace](docs/md/troncal/01-tipos.md) |
-| 02 🔁 Estructuras de control | [Enlace](docs/md/troncal/02-estructuras.md) |
-| 03 🧱 Programación Orientada a Objetos | [Enlace](docs/md/troncal/03-poo.md) |
-| 04 📚 Colecciones | [Enlace](docs/md/troncal/04-colecciones.md) |
-| 05 💣 Excepciones | [Enlace](docs/md/troncal/05-excepciones.md) |
+| 00 ⚙️ Introducción e Instalación | [Enlace](md/troncal/00-intro.md) |
+| 01 🗃️ Tipos de datos | [Enlace](md/troncal/01-tipos.md) |
+| 02 🔁 Estructuras de control | [Enlace](md/troncal/02-estructuras.md) |
+| 03 🧱 Programación Orientada a Objetos | [Enlace](md/troncal/03-poo.md) |
+| 04 📚 Colecciones | [Enlace](md/troncal/04-colecciones.md) |
+| 05 💣 Excepciones | [Enlace](md/troncal/05-excepciones.md) |
 
 
 
