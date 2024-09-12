@@ -4,5 +4,5 @@ Este es el repositorio de la carpeta fuente completa de la documentación del cu
 
 ## Versión Web
 
-- Enlace a la versión web de la documentación: {{enlace aquí}}
-- Otros enlaces aquí.
+- GitHub Pages: {{enlace aquí}}
+- Netlify: {{enlace aquí}}
