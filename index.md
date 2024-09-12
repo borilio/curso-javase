@@ -23,7 +23,7 @@ Las píldoras de información son secciones breves y concisas que complementan l
 
 | Descripción | Documento                               |
 | ----------- | --------------------------------------- |
-| 🧩Funciones  | [Enlace](docs/md/píldoras/funciones.md) |
+| 🧩Funciones  | [Enlace](md/pildoras/funciones.md) |
 
 
 
