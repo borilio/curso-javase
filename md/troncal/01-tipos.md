@@ -8,9 +8,11 @@
 
 # Introducción a Java
 
+<img src="img/01-tipos/Java-logo.png" alt="Java Logo" style="width:80%" />
+
 **Java es un lenguaje de programación orientado a objetos, multiplataforma, robusto y fuertemente tipado**. La plataforma Java proporciona, además de un  lenguaje de programación, todo un conjunto de especificaciones, tecnologías y librerías de clases, mediante los cuales se pueden crear diferentes tipos de programas informáticos capaces de ser ejecutados en una amplia variedad de sistemas operativos.
 
-Esta independencia, tanto del sistema operativo como del dispositivo, ha contribuido a expandir el lenguaje, y a que numerosos fabricantes de software hayan apostado por el, y que a día de hoy siga siendo la principal opción para numerosas empresas y programadores a la hora realizar sus desarrollos.
+Esta independencia, tanto del sistema operativo como del dispositivo, ha contribuido a expandir el lenguaje y a que numerosos fabricantes de software hayan apostado por el, y que a día de hoy siga siendo la principal opción para numerosas empresas y programadores a la hora realizar sus desarrollos.
 
 
 
@@ -34,7 +36,7 @@ La JVM carga el código byte (o *byte code*) compilado de una aplicación Java, 
 
 Además, la JVM es responsable de proporcionar seguridad a las aplicaciones Java al controlar el acceso a los recursos del sistema y al aplicar restricciones de seguridad en el código.
 
-En resumen, la Máquina Virtual de Java es un intérprete que se encarga de ejecutar las aplicaciones Java, independientemente del sistema operativo o el hardware en el que se ejecuta. Es responsable de cargar, verificar y ejecutar el código byte de una aplicación, así como de gestionar la memoria y los recursos del sistema y proporcionar seguridad a las aplicaciones.
+En resumen, la **Máquina Virtual de Java es un intérprete que se encarga de ejecutar las aplicaciones Java**, independientemente del sistema operativo o el hardware en el que se ejecuta. Es responsable de cargar, verificar y ejecutar el código byte de una aplicación, así como de gestionar la memoria y los recursos del sistema y proporcionar seguridad a las aplicaciones.
 
 ![Proceso de compilación de un archivo .java a un .class](img/01-tipos/jvm-java-compiler-bytecode.png)
 
@@ -52,13 +54,19 @@ El proceso de compilación de un programa Java es el siguiente:
 
 Es importante mencionar que el **código byte generado en el proceso de compilación no es legible para los humanos**, ya que se encuentra en un formato binario. Sin embargo, el código byte es fácilmente interpretable por la JVM, lo que permite que una aplicación Java se ejecute en cualquier plataforma compatible (como podemos ver en el esquema anterior).
 
+> [!IMPORTANT]
+>
+> **No tendremos que preocuparnos por hacer todo este proceso ya que lo realizan los IDEs**. Tu solo has de escribir el código fuente en el IDE que tendrá mecanismos para iniciar todo el proceso de compilación y ejecución automatizados. Puedes ver como cuando ejecutas el programa, suele aparecer una carpeta nueva con el archivo `.class`, el cual es ejecutado y mostrado su resultado por una consola.
+
 # Tipos de datos
 
-Java es un lenguaje fuertemente tipado, y se ha de especificar los tipos de datos en la creación de variables, objetos, atributos, valores devueltos por los métodos y parámetros recibidos por los métodos. 
+**Java es un lenguaje fuertemente tipado**, y se ha de especificar los tipos de datos en la creación de variables, objetos, atributos, valores devueltos por los métodos y parámetros recibidos por los métodos. 
 
 ## Variables
 
 En programación, una variable está formada por un espacio en memoria y un nombre simbólico, llamado **identificador**, que queda asociado a dicho espacio. En ese espacio se podrá almacenar un **valor**. Usaremos el identificador para hacer referencia al valor almacenado en memoria. El valor de la variable puede cambiar durante la ejecución del programa.
+
+<img src="img/01-tipos/variable.jpeg" alt="una caja de cartón con un número 23 dentro como una luz de neón azul y un letrero que dice 'edad'" style="width: 50%" />
 
 ### Reglas para los identificadores
 
@@ -93,19 +101,25 @@ Veamos los primeros tipos de datos en Java, antes de poder definir una variable.
 
 También llamados atómicos, puesto que son las unidades más pequeñas con las que podemos trabajar en Java. Los objetos estarán formados por otros objetos o bien por tipos primitivos. Los tipos primitivos en Java son:
 
-| Nombre             | Declaración | Descripción                                                  | Memoria | Rango                                              |
-| ------------------ | ----------- | ------------------------------------------------------------ | ------- | -------------------------------------------------- |
-| Booleano           | `boolean`   | Define una variable que puede tomar dos posibles valores. `true` o `false`. Aunque solo requeriría un bit, lo mínimo almacenable en memoria es un byte. | 1 byte  | `true` o `false`                                   |
-| Byte               | `byte`      | Define una variable entera pequeña.                          | 1 byte  | [-128 ... 127]                                     |
-| Short              | `short`     | Define una variable entera corta.                            | 2 bytes | [-32.768 … 32.767]                                 |
-| Entero             | `int`       | Define una variable entera estándar. Suele ser la más usada para representar un número entero. | 4 bytes | [-2<sup>31</sup> ... 2<sup>31</sup>-1]             |
-| Entero largo       | `long`      | Define una variable entera con un mayor rango, pero ocupa el doble en memoria. | 8 bytes | [-2<sup>63</sup> ... 2<sup>63</sup>-1]             |
-| Decimal simple     | `float`     | Define una variable real estándar.                           | 4 bytes | [±3,4·10<sup>-38</sup> … ±3,4·10<sup>38</sup>]     |
-| Decimal doble      | `double`    | Define una variable real con doble precisión. Ocupa el doble que `float` en memoria. | 8 bytes | [±1,7·10<sup>-308</sup> ... ±1,7·10<sup>308</sup>] |
-| Carácter           | `char`      | Define una variable que podrá almacenar un único carácter o su código ASCII. Se delimita con comillas simples. Ejemplo: `'a'`. | 2 bytes | [0 .. 65.535]                                      |
-| String<sup>1</sup> | `String`    | Define una variable que podrá almacenar una cadena de caracteres. Se delimita con comillas dobles. Ejemplo: `"Hola Mundo"`. |         |                                                    |
+> [!NOTE]
+>
+> Se marcan con el icono de favorito (⭐) los tipos más usados.
 
-> **Nota importante<sup>1</sup>:** El tipo de datos `String` NO ES una variable de tipo primitivo. Ya se verá más adelante a fondo. La incluimos aquí porque podemos catalogarla como **básica** e incluirla “moralmente” entre los tipos primitivos, aunque técnicamente no lo sea.
+| Nombre              | Declaración | Descripción                                                  | Memoria | Rango                                              |
+| ------------------- | ----------- | ------------------------------------------------------------ | ------- | -------------------------------------------------- |
+| ⭐Booleano           | `boolean`   | Define una variable que puede tomar dos posibles valores. `true` o `false`. Aunque solo requeriría un bit, lo mínimo almacenable en memoria es un byte. | 1 byte  | `true` o `false`                                   |
+| Byte                | `byte`      | Define una variable entera pequeña.                          | 1 byte  | [-128 ... 127]                                     |
+| Short               | `short`     | Define una variable entera corta.                            | 2 bytes | [-32.768 … 32.767]                                 |
+| ⭐Entero             | `int`       | Define una variable entera estándar. Suele ser la más usada para representar un número entero. | 4 bytes | [-2<sup>31</sup> ... 2<sup>31</sup>-1]             |
+| Entero largo        | `long`      | Define una variable entera con un mayor rango, pero ocupa el doble en memoria. | 8 bytes | [-2<sup>63</sup> ... 2<sup>63</sup>-1]             |
+| Decimal simple      | `float`     | Define una variable real estándar.                           | 4 bytes | [±3,4·10<sup>-38</sup> … ±3,4·10<sup>38</sup>]     |
+| ⭐Decimal doble      | `double`    | Define una variable real con doble precisión. Ocupa el doble que `float` en memoria. | 8 bytes | [±1,7·10<sup>-308</sup> ... ±1,7·10<sup>308</sup>] |
+| Carácter            | `char`      | Define una variable que podrá almacenar un único carácter o su código ASCII. Se delimita con comillas simples. Ejemplo: `'a'`. | 2 bytes | [0 .. 65.535]                                      |
+| ⭐String<sup>1</sup> | `String`    | Define una variable que podrá almacenar una cadena de caracteres. Se delimita con comillas dobles. Ejemplo: `"Hola Mundo"`. |         |                                                    |
+
+> [!IMPORTANT]
+>
+> **Nota<sup>1</sup>:** El tipo de datos `String` NO ES una variable de tipo primitivo. Ya se verá más adelante a fondo. La incluimos aquí porque podemos catalogarla como **básica** e incluirla “moralmente” entre los tipos primitivos aunque técnicamente no lo sea.
 
 Una vez que ya hemos visto las variables, sus tipos de datos, y la sintaxis para declarar e inicializar variables, veamos nuestras primeras líneas de código real en Java, dónde **definimos** una variable de cada tipo y las **inicializamos** a un valor válido:
 
@@ -148,9 +162,15 @@ En Java, los literales también tienen su tipado, y siguen las siguientes reglas
 - Los literales de carácter, se delimitan por comillas simples `''` ,  o bien por un número entero (ver ejemplo anterior).
 - Los literales booleanos, serán `true` o `false`.
 
+> [!CAUTION]
+>
+> <span style="font-size: 2rem" >🚨🚨🚨IMPORTANTE 🚨🚨🚨</span> 
+>
+> Las reglas arriba indicadas son muy importantes. Importantísimas. MUY IMPORTANTES. **MUCHO**. Avisados estáis 🫵.
+
 Los tipos de datos numéricos, siempre que no se pierda información, pueden “caber” en variables de tipo de dato de igual tipo o más grande, no necesitando ninguna conversión explícita. 
 
-Si visualizamos el literal como un cajón, y la variable como una cajonera, entenderemos que nunca podremos guardar un cajón en una cajonera más pequeña, pero si al revés. Es decir, no podremos guardar un valor `double` dentro de una variable `float`, pero si podremos guardar un valor `int` en una variable `double` o `float`.
+Si visualizamos el valor como un objeto cualquiera, y la variable como una caja de cartón, entenderemos que nunca podremos guardar un objeto grande en una caja pequeña, pero si al revés. Es decir, no podremos guardar un valor `double` dentro de una variable `float`, pero si podremos guardar un valor `int` en una variable `double` o `float`.
 
 ```java
 int a = 15;    //El 15, es un entero, que se mete en una variable de tipo entero. Correcto.
@@ -158,16 +178,24 @@ float b = 3;   //El 3, es un entero, que se mete en una variable de tipo float. 
 float c = 2.4; //El 2.4, es un DOUBLE, que se mete en una variable de tipo float. ERROR. No cabe.
 ```
 
-<div style="text-align: center">
-    <img src="img/01/cajonera_vacia.jpeg" style="width: 40%"/>
-    <img src="img/01/cajonera_llena.jpeg" style="width: 40%"/>
-</div>
+<img src="img/01-tipos/caja-carton.jpeg" alt="Dos cajas de cartón con un osito de peluche y un pepino respectivamente. Ambas cajas tienen un cartel con 'a' y 'b' respectivamente, representando que en una caja no cabe el objeto, mientras que en la otra sobra espacio." style="width: 65%" />
 
-### Conversiones explícitas
+### Conversiones de tipo (casting)
 
-Si queremos guardar un literal decimal, en una variable de tipo `float`, deberemos convertir explícitamente el valor a `float`, ya que un literal decimal SIEMPRE será de tipo `double`, y no cabría en un `float`.
+En Java, los datos los podemos convertir de un tipo de dato a otro, siempre que sean compatibles. Algunas conversiones se producen de forma automática (implícita) y otras veces tenemos nosotros que forzar dicha conversión. A esta técnica también se le llama **`casting`**.
+
+A continuación veremos las distintas formas y ocasiones en la que transformaremos unos tipos de datos en otro. 
+
+
+
+#### 🟪Conversiones explícitas 
+
+**Son las conversiones producidas manualmente por nosotros** para forzar una conversión de un tipo de datos a otro.
+
+Por ejemplo: Si queremos guardar un valor literal decimal en una variable de tipo `float`, deberemos convertir explícitamente el valor a `float`, ya que un literal decimal de forma predeterminada es de tipo `double` y no cabría en un `float`.
 
 ```java
+float nota = 8.3;		  //Daría error, ya 8.3 es un valor double
 float nota = (float) 8.3; //Así convertimos explícitamente el double a float (casting)
 float temp = 25.8f;       //Así también, pero no se recomienda.
 ```
@@ -180,9 +208,9 @@ long largo = 3147000000L;
 
 
 
-### Conversiones implícitas
+#### 🟪Conversiones implícitas
 
-Son las conversiones producidas de forma automática por Java, sin que explícitamente indiquemos el tipo de dato resultante.
+**Son las conversiones producidas de forma automática por Java**, sin que explícitamente indiquemos el tipo de dato resultante.
 
 Veamos las más comunes:
 
@@ -202,7 +230,7 @@ System.out.println(a/2.0); //El resultado es -> 5.0
 System.out.println(a/3.0); //El resultado es -> 3.3333333
 ```
 
-En el ejemplo anterior, ambos resultados dan decimales, porque ya no estamos dividiendo un `int` entre un `int`, como antes, si no un `int` entre un `double` (recordar que un literal decimal SIEMPRE es `double`). Como resultado de la operación, el tipo de dato resultante será el mayor involucrado, para que no se pierda información en la operación.
+En el ejemplo anterior, ambos resultados dan decimales, porque ya no estamos dividiendo un `int` entre un `int` como antes, si no un `int` entre un `double` (recuerda que un literal decimal SIEMPRE es `double`). Como resultado de la operación, el tipo de dato resultante será el mayor involucrado, para que no se pierda información en la operación.
 
 Veamos otra posibilidad:
 
@@ -214,8 +242,9 @@ float division4 = 5 / (float) 2;//Funcionaría
 ```
 
 - Línea 1: Dividimos `5 / 2`, ambos enteros, el resultado es entero, y al guardarse en un `float`, se guardaría `2.0`.
-- Línea 2: Dividimos `5 / 2.0`, un `int` entre un `double`, el resultado es `double`, por lo que no podemos almacenarlo en un `float`.
+- Línea 2: Dividimos `5 / 2.0`, un `int` entre un `double`, el resultado es `double`, por lo que no podemos almacenarlo en un `float` y provocará error.
 - Línea 3: Dividimos `5 / 2f`. Un `int` entre un `float`, el resultado es `float`, y se puede almacenar perfectamente en un `float`.
+- Línea 4: Lo mismo que la línea 3.
 
 Con los String también tenemos conversiones implícitas:
 
@@ -239,19 +268,6 @@ System.out.println("Hola " + nombre + ", te queremos " + cantidad);
 
 En la expresión anterior, empezamos concatenando `"Hola " + nombre + ", te queremos "`. Sumamos 3 valores de `String`, que al concatenarlos obtenemos `Hola Max Power, te queremos `. Pero después le concatenamos un número. Ahí se hace una conversión implícita. El número se convierte a `String`, pasando de `3000 a "3000"`, y se concatena al resto del `String`. 
 
-> **MUY IMPORTANTE:** Las expresiones, como en todos los lenguajes de programación, se resuelven de izquierda a derecha, teniendo máxima prioridad los paréntesis. Después las funciones, la multiplicación y división, y por último la suma y la resta.
-
-Veamos como de importante es el orden en la resolución de una expresión:
-
-```java
-String cadena1 = "1" + 2 + 3;   //Resultado "123"
-String cadena2 = 1 + 2 + "3";   //Resultado 1+2=3 -> 3 + "3" -> "33"
-String cadena3 = 1 + (2 + "3"); //Resultado 2+"3"= "23" -> 1 + "23" -> "123"
-String cadena4 = "1" + (2 + 3); //Resultado (2+3=5) -> "1" + 5 -> "15"
-String cadena5 = 1 + 2 + 3;     //Daría error, no puede meter un int en un String
-String cadena6 = 1 + 2 + 3 + "";//Resultado 1+2+3=6 -> 6 + "" -> "6"
-```
-
 
 
 ## Constantes
@@ -267,6 +283,221 @@ Las constantes se declaran igual que las variables, teniendo en cuenta dos punto
 final double PI = 3.141592653589793;
 final String COLOR_ROJO = "\033[31m";
 ```
+
+
+
+# Expresiones
+
+Una **expresión** en programación es una combinación de valores, variables, operadores y funciones que se evalúan para obtener un resultado. Las expresiones son fundamentales porque permiten realizar cálculos y manipular datos dentro de un programa.
+
+Imagina que la asignación es como una flecha que apunta a un sitio donde vas a guardar algo. A la izquierda de la flecha pones el nombre de tu cajita (la variable), y a la derecha pones la fórmula (la expresión) que le dice a Java qué debe guardar dentro de esa cajita.
+
+**Ejemplo:**
+
+```java
+int resultado = 5 + 3;
+```
+
+Aquí tenemos:
+
+- **Izquierda**: `int resultado` (el nombre de la caja y su tipo de datos).
+- **Derecha**: `5 + 3` (la expresión que Java resuelve).
+
+El `=` no significa "igual a", sino más bien "mete lo de la derecha en la cajita de la izquierda". O sea, ¡**la expresión siempre va en la derecha para que Java calcule y luego lo guarde**!
+
+Hay varios tipos de expresiones, dependiendo del valor obtenido o de los operadores usados.
+
+## 🟪Expresiones Aritméticas
+
+Siempre darán como resultado un valor. Son como las cuentas que hacías en la escuela, solo que ahora le estás enseñando a Java a hacerlas por ti. Usamos operadores para decirle a Java qué hacer con los números. Los operadores más comunes son:
+
+| Operador | Significado                | Ejemplo              |
+| -------- | -------------------------- | -------------------- |
+| `+`      | Suma                       | `5 + 3` (esto da 8)  |
+| `-`      | Resta                      | `9 - 2` (esto da 7)  |
+| `*`      | Multiplicación             | `4 * 2` (esto da 8)  |
+| `/`      | División                   | `10 / 2` (esto da 5) |
+| `%`      | Módulo (resto de división) | `10 % 3` (esto da 1) |
+
+Ejemplo de una expresión aritmética:
+
+```java
+int resultado = 5 + 3 * 2;     // resultado = 11
+int media = 7 + 2 + 0 + 7 / 2; // media = 12 
+```
+
+> [!CAUTION]
+>
+> ⚠️Cuidado con el orden de las operaciones. Lo veremos más adelante.
+
+
+
+
+
+## 🟪Expresiones Lógicas
+
+Las expresiones lógicas le enseñan a Java a decidir si algo es **verdadero** o **falso** (`true` o `false`). Aquí es donde Java empieza a hacer preguntas como "¿Es esto mayor que aquello?", "¿Son iguales?". Usa operadores lógicos (símbolos) para hacer estas comparaciones.
+
+Una expresión lógica (también llamada booleana) solo puede tener un único resultado y **siempre será o `true` o `false`.** No hay más posibilidades.
+
+**Operadores lógicos comunes:**
+
+| Operador | Significado       | Ejemplo                    |
+| -------- | ----------------- | -------------------------- |
+| `==`     | Igual a           | `5 == 5` (esto es `true`)  |
+| `!=`     | Diferente de      | `5 != 3` (esto es `true`)  |
+| `>`      | Mayor que         | `7 > 3` (esto es `true`)   |
+| `<`      | Menor que         | `2 < -1` (esto es `false`) |
+| `>=`     | Mayor o igual que | `6 >= 6` (esto es `true`)  |
+| `<=`     | Menor o igual que | `4 <= 2` (esto es `false`) |
+
+**Ejemplo de una expresión lógica:**
+
+```java
+boolean esMayor = 7 > 5;
+```
+
+Aquí, Java está comprobando si 7 es mayor que 5. Si lo es (¡y lo es!), entonces la variable `esMayor` será **true** (verdadero).
+
+
+
+> [!TIP]
+>
+> También puedes combinar estas expresiones, usando partes aritméticas y partes lógicas.
+>
+> ```java
+> int numero = 10;
+> boolean esDivisiblePorDos = numero % 2 == 0;
+> ```
+>
+> Aquí, le estamos diciendo a Java que compruebe si el número es divisible por 2. Si lo es, entonces `esDivisiblePorDos` será **true**. Primero ha obtenido el resto de la división con el operador `%`, y si ese número es igual a `0` es porque es divisible por 2, por lo que el resultado total de la expresión es `true`.
+
+
+
+### Operadores Lógicos: AND, OR y NOT
+
+Podemos combinar expresiones lógicas con otros operadores lógicos. Sirven para crear expresiones lógicas mucho más complejas y potentes.
+
+| Operador | Significado | Ejemplo               | Resultado                            |
+| -------- | ----------- | --------------------- | ------------------------------------ |
+| `&&`     | AND (Y)     | `(5 > 3) && (8 > 6)`  | **true** (ambas son verdaderas)      |
+| `||`     | OR (O)      | `(5 > 3) || (8 < 6) ` | **true** (al menos una es verdadera) |
+| `!`      | NOT (No)    | `!(5 > 3)`            | **false** (invierte el resultado)    |
+
+
+
+🟣**AND (`&&`): ¡Los dos tienen que decir "sí"!**
+
+El operador **AND** funciona como si estuvieras en una puerta con dos guardias. Solo puedes pasar si **ambos** dicen que sí. Es decir, las dos condiciones tienen que ser verdaderas para que el resultado sea **true**.
+
+```java
+boolean esAdulto = (edad >= 18) && (tieneDNI == true);
+```
+
+Aquí, para que `esAdulto` sea **true**, Java necesita que **ambas** cosas sean verdaderas: la persona debe tener al menos 18 años **y** tener su DNI.
+
+🟣**OR (`||`): ¡Con que uno diga "sí", ya vale!**
+
+El operador **OR** es más relajado. Solo necesitas que **una** de las condiciones sea verdadera para que el resultado sea **true**. Es como si tuvieras dos puertas, y con que una esté abierta, ya puedes pasar.
+
+```java
+boolean puedeEntrar = (tieneInvitacion == true) || (estaEnLista == true);
+```
+
+En este caso, `puedeEntrar` será **true** si la persona tiene una invitación **o** está en la lista, ¡con que una de esas condiciones sea cierta, basta!
+
+**🟣NOT (`!`): ¡Dale la vuelta!**
+
+El operador **NOT** es el rebelde del grupo, siempre va en contra. Si una condición es **true**, él la convierte en **false**, y si es **false**, la convierte en **true**. Es como un interruptor que invierte el resultado.
+
+```java
+boolean noEsMayor = !(edad >= 18);
+```
+
+Aquí, si `edad >= 18` es **true** (la persona es mayor de edad), el operador **NOT** lo convierte en **false**. Así que `noEsMayor` sería **true** solo si la persona **no** tiene 18 años o más.
+
+🟣 **Operadores.... reuníos**
+
+![Escena donde El capitan america dice Vengadores Reuníos, simulando la combinación de todos los operadores lógicos para realizar cosas más poderosas](img/01-tipos/operadores-assemble.gif)
+
+Puedes combinar estos operadores para hacer decisiones más complejas y potentes, como:
+
+```java
+boolean puedeComprarEntrada = (edad >= 18) && (tieneDinero || tieneInvitacion);
+```
+
+Aquí le estamos diciendo a Java que la persona solo puede comprar la entrada si tiene al menos 18 años **y** además tiene dinero **o** tiene una invitación.
+
+
+
+## 🟪Expresiones de concatenación
+
+Las expresiones que combinan textos (o cadenas de caracteres, también llamados **Strings**) no son ni aritméticas ni lógicas, son expresiones de concatenación.
+
+Cuando en Java unes dos textos (Strings) usando el símbolo `+`, estás **concatenando**, es decir, pegando las palabras una al lado de la otra para formar una frase más larga. Los Strings pueden estar formados de cualquier carácter alfanumérico.
+
+**Ejemplo de concatenación:**
+
+```java
+String saludo = "Hola" + " Mundo"; //saludo = "Hola Mundo"
+String texto = "12" + "34";        //texto = "1234"
+```
+
+En el primer ejemplo, Java agarra las dos palabras y las pega para formar `"Hola Mundo"`. Igual pasa con el segundo ejemplo, al estar entrecomillado, son literales de Strings y no números por lo que al usar el operador `+` no se suman, si no se pegan los caracteres que tenga el String, ya sean letras, números o cualquier otro símbolo.
+
+> [!NOTE]
+>
+> Recuerda: Si mezclas un número con un texto usando `+`, Java convierte el número en texto automáticamente y los pega. ¿Cómo se llamaba esa conversión? 🤔.
+
+
+
+```java
+String mensaje = "Tengo " + 5 + " manzanas.";
+```
+
+El resultado será: `"Tengo 5 manzanas."`
+
+> [!IMPORTANT]
+>
+> Recuerda añadir los espacios en blanco que necesites al concatenar textos y/o números, ya que si no saldrá todo pegado.
+>
+> ```java
+> String nombre = "Max";
+> String saludo = "Buenos días" + nombre; // --> "Buenos díasMax"
+> ```
+
+
+
+## Prioridad
+
+Cuando Java se encuentra con una expresión llena de operadores (como `+`, `-`, `*`, `/`, etc.), no los ejecuta todos al mismo tiempo. Java sigue un orden de prioridades. Es como en la vida: algunas cosas son más urgentes que otras.
+
+1. **Paréntesis `()`**: Todo lo que esté entre paréntesis, se hace primero.
+2. **Multiplicación `\*`, División `/`, y Módulo `%`**: Estos operadores tienen el segundo lugar en importancia. Si tienes varias operaciones, Java las ejecuta de izquierda a derecha.
+3. **Suma `+` y Resta `-`**: Estos vienen después de la multiplicación y la división. Si ves sumas y restas sin multiplicaciones o divisiones antes, Java las resuelve de izquierda a derecha.
+
+Veamos unos ejemplos simples de matemáticas básicas simples:
+
+```java
+int resultado = 10 - 3 + 2; // Primero 10 - 3, luego suma 2. resultado = 9
+int resultado = 2 + 3 * 4;  // Primero 3 * 4, luego suma 2. resultado = 14
+int resultado = (2 + 3) * 4;// Primero 2 + 3, luego multiplicar por 4. resultado = 20
+```
+
+Veamos como de importante es el orden en la resolución de una expresión:
+
+```java
+String cadena1 = "1" + 2 + 3;   //Resultado "123"
+String cadena2 = 1 + 2 + "3";   //Resultado 1+2=3 -> 3 + "3" -> "33"
+String cadena3 = 1 + (2 + "3"); //Resultado 2+"3"= "23" -> 1 + "23" -> "123"
+String cadena4 = "1" + (2 + 3); //Resultado (2+3=5) -> "1" + 5 -> "15"
+String cadena5 = 1 + 2 + 3;     //Daría error, no puede meter un int en un String
+String cadena6 = 1 + 2 + 3 + "";//Resultado 1+2+3=6 -> 6 + "" -> "6"
+```
+
+> [!TIP]
+>
+> Un truco poco elegante pero efectivo es el visto en el último ejemplo. Para convertir un número a un String, se le concatena una cadena vacía `""`, lo cual convierte implícitamente todo el resultado de la expresión en un String. 🐷
 
 # Entrada y salida de datos
 
@@ -298,7 +529,9 @@ Mundo
 
 ### Colores  🌈
 
-Es posible imprimir colores por la consola de Java en STS4. Tan sólo tendremos que imprimir un `String` concreto con un código de color y a partir de ese carácter imprimirá todo el texto en dicho color. A continuación la lista con los códigos de color y un ejemplo para imprimir un color concreto:
+Es posible imprimir colores por la consola de Java en diferentes IDEs. Tan sólo tendremos que imprimir un `String` concreto con un código de color y a partir de ese carácter imprimirá todo el texto en dicho color hasta que lo volvamos a cambiar. 
+
+A continuación la lista con los códigos de color y un ejemplo para imprimir un color concreto:
 
 ```java
 //Lista de colores disponibles
@@ -319,7 +552,9 @@ System.out.print("Este texto ya sale en azul");
 ```
 ![Consola colores1](img/01-tipos/01.png) 
 
-> **Nota:** Si cambiamos los colores, permanecerán activos hasta que se reseteen o se cambien por otro color. Por lo que sería una buena práctica imprimir siempre al inicio del programa el color `\u001B[0m` (como hacemos en la línea 12 del ejemplo) para que no empezara a escribir con un color inesperado.
+> [!TIP]
+>
+> Si cambiamos los colores, permanecerán activos hasta que se reseteen o se cambien por otro color. Por lo que sería una buena práctica imprimir siempre al inicio del programa el color `\u001B[0m` (como hacemos en la línea 12 del ejemplo) para que no empezara a escribir con un color inesperado.
 
 Aunque lo más fácil es guardar los códigos en variables para después imprimirlas cuando queramos, también podemos imprimir los códigos como parte de un String.
 
@@ -336,7 +571,7 @@ System.out.print("\033[37m BLANCO");
 
 ![Consola colores2](img/01-tipos/02.png)
 
-También es posible cambiar el color de fondo y algunos estilos básicos como negrita o cursiva, aunque dependerá de la compatibilidad de la versión de Eclipse respecto a los códigos ANSI. 
+También es posible cambiar el color de fondo y algunos estilos básicos como negrita o cursiva, aunque dependerá de la compatibilidad de la versión del IDE respecto a los códigos ANSI. 
 
 La lista completa de códigos de escape para los colores ANSI la puedes encontrar en el siguiente enlace: https://en.wikipedia.org/wiki/ANSI_escape_code#Colors
 
@@ -344,15 +579,21 @@ La lista completa de códigos de escape para los colores ANSI la puedes encontra
 
 ## Entrada por teclado
 
-Para leer datos desde teclado en un programa java, usaremos la clase `Scanner`. Primero instanciaremos un nuevo objeto de la clase `Scanner`.
+> [!NOTE]
+>
+> 🧙‍♂️En esta sección tenemos que centrarnos únicamente en lo principal, que es leer información desde el teclado a nuestro programa. Se hablará de instancias, clases, paquetes, objetos, métodos y excepciones. Todavía no sabemos que es nada de eso, pero tenemos que decir sus verdaderos nombres porque está feo mentir y además tenemos que ir acostumbrándonos a la jerga técnica 🤓. No te impacientes. Todo se explicará en su debido momento. Lo que no entendamos lo hizo un mago.
+
+Para leer datos desde teclado en un programa java, usaremos la clase `Scanner`. Primero instanciaremos un nuevo objeto de la clase `Scanner`. 🧙‍♂️.
 
 ```java
 Scanner teclado = new Scanner(System.in); //Creamos un objeto Scanner
 ```
 
-> **Nota:** La clase `Scanner` está en el paquete `java.util`. Deberemos importar el paquete para poder usar la clase.
+> [!IMPORTANT]
+>
+> 🧙‍♂️La clase `Scanner` está en el paquete `java.util`. Deberemos importar el paquete para poder usar la clase. 
 
-Una vez creado el objeto Scanner, usaremos sus métodos para pedir el tipo de dato que necesitemos por teclado:
+Una vez creado el objeto Scanner, usaremos sus métodos para pedir el tipo de dato que necesitemos por teclado 🧙‍♂️:
 
 ```java
 int edad = teclado.nextInt();
@@ -361,7 +602,7 @@ double valor = teclado.nextDouble();
 String nombre = teclado.nextLine();
 ```
 
-Cada vez que llamemos a un método de los anteriores, la ejecución de la aplicación se detendrá y esperará a que introduzcamos un valor por la consola. Al pulsar intro se terminará la lectura por teclado, el valor recogido será devuelto por el método, y se asignará en la variable.
+Cada vez que llamemos a un método de los anteriores, la ejecución de la aplicación se detendrá y esperará a que introduzcamos un valor por la consola. Al pulsar la tecla <kbd>Intro</kbd> se terminará la lectura por teclado, el valor recogido será devuelto por el método y se asignará en la variable.
 
 No es necesario crear nuevas instancias de la clase Scanner, podemos reutilizar la misma todas las veces que necesitemos. En nuestro ejemplo, es el objeto llamado `teclado`.
 
@@ -375,7 +616,9 @@ Scanner teclado = new Scanner(System.in);
 teclado.close(); // Lo cerramos cuando ya no vamos a usarlo
 ```
 
-> **Nota:** Si cerramos el objeto scanner y después lo intentamos usar, provocará una excepción y el programa abortará la ejecución.
+> [!CAUTION]
+>
+> Si cerramos el objeto scanner y después lo intentamos usar, provocará una excepción y el programa abortará la ejecución🧙‍♂️.
 
 ### Buffer de teclado
 
@@ -419,5 +662,7 @@ String nombre = teclado.nextLine();	//Se detiene, porque el buffer ya está vac�
 String apodo = teclado.nextLine();	//Se detiene de nuevo, porque el buffer está vacío
 ```
 
-> **🤓:** También podemos solucionarlo pidiendo los `String` en primer lugar, y después los números. O bien usando una nueva instancia de la clase `Scanner`, la cual tenga un buffer vacío.
+> [!tip]
+>
+> **🤓**También podemos solucionarlo pidiendo los `String` en primer lugar, y después los números. O bien usando una nueva instancia de la clase `Scanner`, la cual tenga un buffer vacío.
 
