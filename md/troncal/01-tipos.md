@@ -58,6 +58,8 @@ Es importante mencionar que el **código byte generado en el proceso de compilac
 >
 > **No tendremos que preocuparnos por hacer todo este proceso ya que lo realizan los IDEs**. Tu solo has de escribir el código fuente en el IDE que tendrá mecanismos para iniciar todo el proceso de compilación y ejecución automatizados. Puedes ver como cuando ejecutas el programa, suele aparecer una carpeta nueva con el archivo `.class`, el cual es ejecutado y mostrado su resultado por una consola.
 
+---
+
 # Tipos de datos
 
 **Java es un lenguaje fuertemente tipado**, y se ha de especificar los tipos de datos en la creación de variables, objetos, atributos, valores devueltos por los métodos y parámetros recibidos por los métodos. 
@@ -272,12 +274,12 @@ En la expresión anterior, empezamos concatenando `"Hola " + nombre + ", te quer
 
 ## Constantes
 
-Una constante en Java es una variable que su valor no podrá ser modificado después de su inicialización. A todos los efectos funciona exactamente igual que una variable, con la diferencia que si intentamos asignarle un valor cualquiera, una vez que ya tenga su valor inicial, provocará un error de compilación y el propio IDE nos indicará el error.
+Una constante en Java es una “variable” que su valor no podrá ser modificado después de su inicialización. A todos los efectos funciona exactamente igual que una variable, con la diferencia que si intentamos asignarle un valor cualquiera una vez que ya tenga su valor inicial, provocará un error de compilación y el propio IDE nos indicará el error.
 
 Las constantes se declaran igual que las variables, teniendo en cuenta dos puntos:
 
-- Hay que añadirle el modificador `final` antes del tipo de dato, sea el que sea.
-- Por convención, el identificador de una constante, se escribirá entero en mayúsculas. Si tiene varias palabras, se usará guion bajo para separarlas.
+- Hay que **añadirle el modificador `final`** antes del tipo de dato, sea el que sea.
+- Por convención, el identificador de una constante, **se escribirá entero en mayúsculas**. Si tiene varias palabras se usará guion bajo para separarlas.
 
 ```java
 final double PI = 3.141592653589793;
@@ -285,6 +287,8 @@ final String COLOR_ROJO = "\033[31m";
 ```
 
 
+
+---
 
 # Expresiones
 
@@ -305,9 +309,57 @@ Aquí tenemos:
 
 El `=` no significa "igual a", sino más bien "mete lo de la derecha en la cajita de la izquierda". O sea, ¡**la expresión siempre va en la derecha para que Java calcule y luego lo guarde**!
 
+
+
+## Sentencias
+
+En Java, escribir una expresión por sí sola no sirve de nada. Si solo pones algo como `5 + 3;` en una línea, Java se confunde y te dice: "¡¿Qué hago con esto?!". Esto es porque las expresiones necesitan que hagas **algo** con ellas, como guardarlas en una variable, imprimirlas, o usarlas para tomar una decisión.
+
+**Ejemplo de una expresión no válida:**
+
+```java
+5 + 3;
+```
+
+Java te daría un error aquí porque no estás diciendo qué hacer con el resultado de `5 + 3`. La expresión por sí sola **no es una sentencia válida**.
+
+**¿Qué es una sentencia válida?**
+
+Para que una expresión tenga sentido en Java, debe formar parte de una **sentencia** que le diga a Java qué hacer con el resultado. Por ejemplo:
+
+1. **Asignar el resultado a una variable**:
+
+   ```java
+   int resultado = 5 + 3;  // Aquí estamos guardando el resultado en una cajita (variable).
+   ```
+
+2. **Imprimir el resultado en la consola**:
+
+   ```java
+   System.out.println(5 + 3);  // Aquí le decimos a Java que imprima el resultado en la pantalla.
+   ```
+
+3. **Usar la expresión en una condición** (las veremos más adelante):
+
+   ```java
+   if (5 + 3 == 8) {
+       System.out.println("¡Es correcto!");
+   }
+   ```
+
+En estos ejemplos, las expresiones **tienen un propósito**: guardan el resultado, lo muestran en pantalla o lo usan para tomar una decisión. Así que recuerda, en Java no basta con escribir una expresión sin más; siempre debes decirle a Java **qué hacer con ese resultado** para que sea una sentencia válida.
+
+> [!IMPORTANT]
+>
+> 🚨🚨🚨**En Java, todas las sentencias terminan con el símbolo punto y coma** (**`;`**). 🚨🚨🚨
+
+
+
+## Tipos de expresiones
+
 Hay varios tipos de expresiones, dependiendo del valor obtenido o de los operadores usados.
 
-## 🟪Expresiones Aritméticas
+### 🟪Expresiones Aritméticas
 
 Siempre darán como resultado un valor. Son como las cuentas que hacías en la escuela, solo que ahora le estás enseñando a Java a hacerlas por ti. Usamos operadores para decirle a Java qué hacer con los números. Los operadores más comunes son:
 
@@ -330,11 +382,13 @@ int media = 7 + 2 + 0 + 7 / 2; // media = 12
 >
 > ⚠️Cuidado con el orden de las operaciones. Lo veremos más adelante.
 
+> [!tip]
+>
+> En Java, 
 
 
 
-
-## 🟪Expresiones Lógicas
+### 🟪Expresiones Lógicas
 
 Las expresiones lógicas le enseñan a Java a decidir si algo es **verdadero** o **falso** (`true` o `false`). Aquí es donde Java empieza a hacer preguntas como "¿Es esto mayor que aquello?", "¿Son iguales?". Usa operadores lógicos (símbolos) para hacer estas comparaciones.
 
@@ -374,7 +428,7 @@ Aquí, Java está comprobando si 7 es mayor que 5. Si lo es (¡y lo es!), entonc
 
 
 
-### Operadores Lógicos: AND, OR y NOT
+#### Operadores Lógicos: AND, OR y NOT
 
 Podemos combinar expresiones lógicas con otros operadores lógicos. Sirven para crear expresiones lógicas mucho más complejas y potentes.
 
@@ -430,7 +484,7 @@ Aquí le estamos diciendo a Java que la persona solo puede comprar la entrada si
 
 
 
-## 🟪Expresiones de concatenación
+### 🟪Expresiones de concatenación
 
 Las expresiones que combinan textos (o cadenas de caracteres, también llamados **Strings**) no son ni aritméticas ni lógicas, son expresiones de concatenación.
 
@@ -499,6 +553,10 @@ String cadena6 = 1 + 2 + 3 + "";//Resultado 1+2+3=6 -> 6 + "" -> "6"
 >
 > Un truco poco elegante pero efectivo es el visto en el último ejemplo. Para convertir un número a un String, se le concatena una cadena vacía `""`, lo cual convierte implícitamente todo el resultado de la expresión en un String. 🐷
 
+
+
+---
+
 # Entrada y salida de datos
 
 ## Salida por pantalla
@@ -510,7 +568,7 @@ String saludo = "Hola Mundo!";
 System.out.println(saludo);
 ```
 
-Dicha función imprimirá el resultado de la expresión, y un salto de línea al final.
+Dicha función imprimirá el resultado de la expresión y un salto de línea al final.
 
 Hay una versión que no imprimirá ningún salto de línea al final, que es `System.out.print();`. 
 
