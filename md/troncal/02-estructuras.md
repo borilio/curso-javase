@@ -393,7 +393,7 @@ for (int i=0; i<=10; i++){
 
  El bucle hace lo siguiente:
 
-1. Declarar una variable `i`, e inicializarla a `0`. 
+1. Declarar una variable `i`, e inicializarla a `0`.
 2. Comprueba la condición `i<=10`. Mientras sea verdadera, entra en el bucle. Si es falsa, no entra y se salta todo el bloque de instrucciones. Exactamente igual que un `while`.
 3. Ejecuta las instrucciones que haya en el bucle.
 4. Ejecuta la instrucción de incremento que hemos definido en el bucle. `i++` en nuestro ejemplo.
@@ -436,7 +436,7 @@ if (contador == 0) {
 - Si la condición es verdadera, se ejecuta un bucle **for** que imprime tres vueltas.
 - Dentro del **for**, hay un bucle **while** que imprime dos iteraciones por cada vuelta del **for**.
 
-Este ejemplo muestra cómo podemos anidar varias estructuras de control para realizar tareas más complejas. ¡Y el código sigue siendo fácil de entender!... o no. 
+Este ejemplo muestra cómo podemos anidar varias estructuras de control para realizar tareas más complejas. ¡Y el código sigue siendo fácil de entender!... o no.
 
 ![img](img/02-estructuras/explosion.gif)
 
@@ -448,7 +448,7 @@ Cuando creamos una variable en Java, su **ámbito** (o **alcance**) depende del 
 
 **¿Qué es un bloque de código?**
 
-Un bloque de código es cualquier parte del programa que está rodeada por llaves `{ }`. Por ejemplo, los bloques que usamos dentro de un `if`, un `for`, o un `while`. Si declaras una variable dentro de uno de estos bloques, **solo existirá dentro de ese bloque**. Fuera de él, esa variable desaparece como por arte de magia.
+Un bloque de código es cualquier parte del programa que está rodeada por llaves `{ }`. Por ejemplo, los bloques que usamos dentro de un `if`, un `for`, o un `while`. Si declaras una variable dentro de uno de estos bloques, **solo existirá dentro de ese bloque**. Fuera de él, esa variable desaparece como por arte de magia 🧙‍♂️.
 
 **Ejemplo:**
 
