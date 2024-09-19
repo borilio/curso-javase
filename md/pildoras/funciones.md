@@ -1,3 +1,9 @@
+
+
+[TOC]
+
+---
+
 # Funciones
 
 En programación, una **función** es un bloque de código diseñado para realizar una tarea específica. Puedes pensar en las funciones como pequeños fragmentos de un programa que puedes llamar para realizar una operación concreta.
@@ -5,6 +11,8 @@ En programación, una **función** es un bloque de código diseñado para realiz
 Una función puede recibir valores, llamados **parámetros** (*inputs*) , y devolver un valor, llamado **valor retornado** (*output*). Ambos valores son opcionales, es decir, no tiene porqué recibir valores ni retornarlos.
 
 <img src="img/funciones/function_machine.png" alt="Representación gráfica de función" style="zoom:67%;" />
+
+Una **función** es como una receta en programación: es un bloque de código que realiza una tarea específica. Le puedes dar datos (llamados **parámetros**) y, al final, te devuelve un resultado o simplemente hace algo. La idea es que puedas **usar** esa función siempre que la necesites, sin tener que escribir el mismo código una y otra vez.
 
 ## Ventajas de utilizar funciones
 
@@ -24,7 +32,9 @@ f(x) = x + 1
 $$
 Estamos indicando que la función recibe un valor $x$, y retorna dicho valor sumándole un $1$.
 
-> 💡 **IMPORTANTE:** Hay que tener claro que todavía no estamos usando la función ni ejecutándola, tan solo estamos **definiendo su comportamiento**, los valores que debe recibir y retornar (si es que los recibe o retorna).
+> [!IMPORTANT]
+>
+> Hay que tener claro que todavía no estamos usando la función ni ejecutándola, tan solo estamos **definiendo su comportamiento**, los valores que debe recibir y retornar (si es que los recibe o retorna).
 
 
 
@@ -46,6 +56,10 @@ En este ejemplo:
 - El valor retornado es $6$.
 
 Es muy importante entender que primero hay que **definir la función** y después **hacer la llamada**. 
+
+> [!caution]
+>
+> Si intentamos llamar a una función que no está definida, provocará un error.
 
 ## Ejemplo
 
