@@ -440,6 +440,47 @@ Este ejemplo muestra cómo podemos anidar varias estructuras de control para rea
 
 ![img](img/02-estructuras/explosion.gif)
 
+---
+
+# Ámbito de las variables
+
+Cuando creamos una variable en Java, su **ámbito** (o **alcance**) depende del lugar donde la declaramos. En otras palabras, ¿dónde puedes usar esa variable?. Eso depende de las llaves `{ }` que delimitan el bloque de código.
+
+**¿Qué es un bloque de código?**
+
+Un bloque de código es cualquier parte del programa que está rodeada por llaves `{ }`. Por ejemplo, los bloques que usamos dentro de un `if`, un `for`, o un `while`. Si declaras una variable dentro de uno de estos bloques, **solo existirá dentro de ese bloque**. Fuera de él, esa variable desaparece como por arte de magia.
+
+**Ejemplo:**
+
+```java
+int x = 10;  // Esta variable 'x' está disponible en todo el programa.
+
+if (x == 10) {
+    int y = 5;  // 'y' solo existe dentro de este bloque 'if'.
+    System.out.println("Dentro del if: y = " + y);
+}
+
+// Aquí fuera, 'y' ya no existe, no puedes usarla.
+System.out.println(y);  // ¡ERROR! No puedes acceder a 'y' fuera del if.
+```
+
+En este ejemplo:
+
+- La variable `x` se declara **fuera** del bloque `if`, así que está disponible **en todo el código** que viene después.
+- La variable `y` se declara **dentro** del bloque `if`, por lo que **solo puedes usarla dentro de esas llaves**. Fuera de ellas, `y` deja de existir.
+
+> [!important]
+>
+> <span style="font-size: 2rem">🚨🚨🚨**Regla básica** 🚨🚨🚨</span>
+>
+> **Variables declaradas dentro de un bloque `{ }` solo existen dentro de ese bloque**. Si necesitas usar una variable fuera, tendrás que declararla **fuera del bloque**.
+
+Este concepto es fundamental para mantener tu código limpio y organizado, evitando que variables "se escapen" a otras partes del programa donde no deberían estar.
+
+
+
+---
+
 # Visualización de código
 
 Cuando estás aprendiendo a programar, puede ser complicado entender exactamente qué está pasando en tu código. Para eso, existen algunas páginas web que te permiten **visualizar** cómo se ejecuta el programa paso a paso. Estas herramientas muestran cómo cambian las variables, cómo avanzan los bucles, y cómo se resuelven las condiciones, haciendo que todo sea mucho más fácil de comprender. Es como ver tu código en acción.
@@ -458,6 +499,8 @@ Algunas de las herramientas más populares para visualizar código son:
 
 
 
+----
+
 # Juegos para aprender a programar
 
 No los subestimes por su apariencia infantil. ¿Recuerdas el “*Dar cera, pulir cera*” de Karate Kid?, la antigua por supuesto😉.
@@ -468,7 +511,7 @@ Los juegos infantiles diseñados para aprender a programar son una excelente man
 2. ⭐**[Blockly Games](https://blockly.games/?lang=es)**: Una serie de juegos educativos que enseñan conceptos de programación usando bloques de código visual. Es ideal para principiantes y cubre desde lo más básico hasta conceptos más avanzados.
 3. **[W3Schools Codegame](https://www.w3schools.com/codegame/)**: Como el juego de Google, pero un poco más largo.
 4. **[Scratch](https://scratch.mit.edu/)**: Aunque no es un juego en sí, es una plataforma donde puedes crear tus propios juegos y animaciones usando bloques de código. Es excelente para entender la lógica de programación.
-5. [**Human Resource Machine**:](https://tomorrowcorporation.com/humanresourcemachine) Un juego de rompecabezas que enseña conceptos de programación utilizando un lenguaje de ensamblador. Es divertido y desafiante.
+5. [**Human Resource Machine**:](https://tomorrowcorporation.com/humanresourcemachine) Un juego de rompecabezas que enseña conceptos de programación utilizando un lenguaje de ensamblador. Es divertido y desafiante. Tiene versiones de PC y Android.
 
 > [!note]
 >
