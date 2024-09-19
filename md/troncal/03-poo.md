@@ -20,6 +20,12 @@ Pero la informática moderna trajo consigo aplicaciones de gran envergadura con 
 
 En la POO una aplicación se entiende como una serie de objetos que se relacionan entre sí. Cada objeto responde a una programación previamente realizada; esta programación se realiza de forma independiente, eso nos asegura que el objeto es reutilizable (se puede usar en aplicaciones distintas).
 
+![Imagen de un bingo completo](img/03-poo/bingo-carton.jpg)
+
+> [!tip]
+>
+> Imagina que un **objeto** en programación es como un **objeto de la vida real**. Piensa, por ejemplo, en un coche. Un coche tiene **características** (como el color, la marca y la velocidad) y puede **hacer cosas** (como arrancar, frenar o acelerar).
+
 ## Clases
 
 Antes de poder utilizar un objeto, se debe definir su clase. **La clase es la definición de un tipo de objeto.** Al definir una clase lo que se hace es indicar como funciona un determinado tipo de objetos. Luego, a partir de la clase, podremos crear objetos de esa clase.
@@ -28,15 +34,37 @@ Podemos decir que la clase es como el molde o el plano con el que se crearán to
 
 <img src="img/03-poo/r2d2-blueprint.jpg" alt="Ejemplo de Plano o blueprint de R2D2" style="zoom: 67%;" />
 
+> [!note]
+>
 > 🤓 A las clases Java, en inglés también se les llama *blueprint*, que significa plano.
-
-Por ejemplo, si quisiéramos crear el juego del parchís en Java, una clase sería la casilla, otra las fichas, otra el dado, etc., etc. En el caso de la casilla, se definiría la clase para indicar su funcionamiento y sus propiedades, y luego se crearía tantos objetos casilla como casillas tenga el juego. Lo mismo ocurriría con las fichas, la clase ficha definiría las propiedades de la ficha (color y posición por ejemplo) y su funcionamiento mediante sus métodos (por ejemplo un método sería mover, otro llegar a la meta, etc.), luego se crearían tantos objetos ficha, como fichas tenga el juego.
 
 Normalmente las clases representan cosas como:
 
-- Cosas tangibles del mundo real: sillas, libros, coches, etc.
-- Roles de las personas: socios, clientes, estudiantes, etc.
-- Cosas no tangibles: un error, una transacción, un listado, un botón, etc.
+- **Cosas tangibles** del mundo real: sillas, libros, coches, etc.
+- **Roles de las personas**: socios, clientes, estudiantes, etc.
+- **Cosas no tangibles**: un error, una transacción, un listado, un botón, etc.
+
+> [!tip]
+>
+> Siguiendo con el ejemplo del coche, una clase sería el **diseño** de un coche, donde defines cómo serán los coches (qué características tendrán y qué cosas podrán hacer), pero no es un coche en sí mismo.
+>
+> |                            Clase                             |                            Objeto                            |
+> | :----------------------------------------------------------: | :----------------------------------------------------------: |
+> | <img src="img/03-poo/coche-clase.jpg" alt="Clase Coche" title="Clase Coche" style="width:300px" /> | <img src="img/03-poo/coche-objeto.jpg" alt="Objeto coche" title="Objeto coche" style="width: 300px;" /> |
+
+
+
+Una **clase** es una descripción general que define:
+
+- **Atributos**: las características que tendrán todos los objetos creados a partir de esa clase (como el color o la marca de un coche).
+- **Métodos**: las acciones que esos objetos podrán realizar (como arrancar, frenar o acelerar).
+
+**Ejemplo:**
+
+- La clase **Coche** podría tener atributos como `color`, `marca`, y métodos como `arrancar()`, `frenar()`.
+- Luego, puedes crear varios **objetos** (coches) a partir de esa clase, y cada uno tendrá su propio color y podrá hacer esas mismas acciones.
+
+
 
 ## Diferencia entre clase y objeto
 
@@ -46,7 +74,7 @@ Una clase define el funcionamiento de los objetos. Es decir, la clase es la plan
 
 Por ejemplo, la clase ***Coche*** definiría la idea o modelo general de coche que tenemos en la cabeza. Esa idea abarca a todos los coches; en esa idea está el hecho de que los coches tienen cuatro ruedas, motor, consumen combustible, aceleran, frenan,… Sin embargo si miramos por la ventana y vemos un coche, ese coche no es ya una clase, **es un objeto**. Un objeto de la clase Coche.
 
-Suele usarse la palabra **instancia** para referirnos a un objeto creado de una clase. Por ejemplo, el objeto `seat` es una instancia de la clase `Coche`.
+Suele usarse la palabra **instancia** para referirnos a un objeto creado a partir de una clase. Por ejemplo, el objeto `seat` es una instancia de la clase `Coche`.
 
 ## Diagramas UML
 
@@ -64,17 +92,26 @@ Un ejemplo de una representación de la clase coche usando UML para el diagrama 
 
 ![UML 2](img/03-poo/02.png)
 
+
+
 ## Ejemplo en Java
 
 ### Nomenclatura en Java
 
 Los identificadores que usamos para hacer referencia a las clases, objetos, atributos y métodos, siguen una nomenclatura. Hay que cumplir las siguientes normas:
 
+<div style="border: 1px solid red; background-color: #f8d7da; color: #721c24; padding: 15px; border-radius: 5px; text-align: center; font-family: Arial, sans-serif;">
+    <p style="font-size: 1.5rem">🚨⚠️MUY IMPORTANTE⚠️🚨</p>
+	<p>
+        Las siguientes normas son de las más importantes de todo Java. Presta especial atención.
+    </p>
+</div>
+
 - **Siempre usaremos camelCase**. Quiere decir que se escribe en minúscula (salvo excepciones) y separamos las palabras escribiendo la primera letra de cada palabra en mayúscula. Ejemplo: `jugadorFutbol`, `mediaAritmetica`, `calculoSueldosParciales`.
 - **Las clases SIEMPRE empiezan por una letra mayúscula**, y el resto usando camelCase. Ejemplo: `Vehiculo`, `AndroideAsesino`, `CasillasJuego`. 
-- Los identificadores de atributos, objetos y métodos, siguen las mismas reglas que las variables. Empiezan en minúscula y se usa camelCase.
-- **Las constantes se escriben todas en mayúsculas**, usando snake_case. Esto es usando un guion bajo para separar palabras. Ejemplo: `COLOR_ROJO`, `ROL_USUARIO`, `PI`.
-- Los paquetes se escriben siempre TODO en minúsculas.
+- **Los identificadores** de atributos, objetos y métodos, **siguen las mismas reglas que las variables**. Empiezan en minúscula y se usa camelCase.
+- **Las constantes se escriben todas en mayúsculas**, usando snake_case. Esto es todo en mayúsculas usando un guion bajo para separar palabras. Ejemplo: `COLOR_ROJO`, `ROL_USUARIO`, `PI`.
+- **Los paquetes se escriben siempre TODO en minúsculas**.
 
 La realidad es que todas estas normas son convenciones que se han establecido, pero realmente funcionará todo igualmente si no las cumplimos. Por ahora. Cuando usemos un framework como Spring, estas normas si serán obligatorias ya que se esperará que ciertos métodos o atributos estén nombrados siguiendo las normas descritas. Además, si todos seguimos las mismas normas, mejorará la legibilidad del código.
 
@@ -82,7 +119,7 @@ La realidad es que todas estas normas son convenciones que se han establecido, p
 
 ### Creación de una clase
 
-En Java, las clases se escriben, usando la siguiente sintaxis:
+En Java, las clases se escriben usando la siguiente sintaxis:
 
 ```java
 //Archivo Vehiculo.java
@@ -104,7 +141,9 @@ public class Vehiculo {
 }
 ```
 
-> **⚠️Importante:** El identificador que usemos en la clase debe coincidir con el nombre del archivo .java donde guardaremos el código. Cada clase se guardará en un archivo diferente.
+> [!important]
+>
+> ⚠️ El identificador (nombre) que usemos en la clase debe coincidir con el nombre del archivo `.java` donde guardaremos el código. Cada clase se guardará en un archivo diferente. Al crear una clase, el IDE hace esto por ti, pero es importante saberlo.
 
 Primero se declaran los **atributos** sin inicializar, y después los **métodos**. En ambos (por ahora), se antepone la palabra `public`, que es un **modificador de acceso**, que se explicarán en detalle más adelante.
 
@@ -118,8 +157,8 @@ Una vez definida la clase, podemos ya **instanciar** un objeto. Veamos un ejempl
 Vehiculo coche = new Vehiculo();
 ```
 
-- En primer lugar, el nombre de la clase (o tipo de la variable que vamos a crear), seguido del nombre del nuevo objeto. Hasta aquí estamos definiendo el objeto, pero no está inicializado. 
-- Para inicializarlo, usamos el operador `new`, seguido del nombre de la clase y unos paréntesis `()`. Esto último es el *constructor*. Lo veremos más adelante.
+- En primer lugar, el nombre de la clase, seguido del nombre del nuevo objeto. Hasta aquí estamos **definiendo el objeto**, pero no está inicializado. 
+- Para inicializarlo, usamos el operador **`new`**, seguido del nombre de la clase y unos paréntesis `()`. Esto último es el *constructor*. Lo veremos más adelante.
 
 Veamos un poco más…
 
@@ -139,37 +178,89 @@ public class Main {
 }
 ```
 
-- Ahora, para acceder a los atributos del objeto, se escribe el nombre del objeto seguido de un punto, y el propio IDE nos mostrará una lista con todos los atributos y métodos disponibles.
+- Ahora, para acceder a los atributos del objeto, se escribe el nombre del objeto seguido de un punto (`.`), y el propio IDE nos mostrará una lista con todos los atributos y métodos disponibles. 
+
+  ![Ayuda del IDE mostrando los atributos y métodos de un objeto](img/03-poo/image-20240919132743354.png)
+
+  > [!note]
+  >
+  > `F` significa *fields* o campo, `M` significa *method* o método.
+
 - Tendremos acceso a los atributos y podemos usar como variables normales, asignándoles valores que sean del mismo tipo del que se han definido.
+
 - También tendremos acceso a los métodos, de igual forma que a los atributos. 
 
 En esencia, tenemos variables y funciones exactamente igual que en la programación estructurada, pero ahora están “dentro” de un objeto.
 
-- Los atributos son variables y se usan exactamente igual que si fueran variables independientes. Por ahora 😉.
-- Los métodos son funciones. Pueden retornar valores o no, y pueden recibir parámetros o no. En el ejemplo el método `.arrancar()` no recibe parámetros ni retorna nada, y el método `.acelerar()` recibe un entero, y retorna un booleano, y eso es lo que imprimiremos por pantalla.
+- **Los atributos son variables** y se usan exactamente igual que si fueran variables independientes. Por ahora 😉.
+- **Los métodos son funciones**. Pueden retornar valores o no, y pueden recibir parámetros o no. En el ejemplo el método `.arrancar()` no recibe parámetros ni retorna nada, y el método `.acelerar()` recibe un entero y retorna un booleano, y eso es lo que imprimiremos por pantalla.
 
 ### Constructores
 
-Los constructores son **métodos especiales destinados a inicializar los atributos** de los objetos en el momento de la creación. Su sintaxis es: Se pone el modificador de acceso `public` y seguido del nombre de la clase (empezando por mayúscula) y se ponen los paréntesis como en cualquier método.
+Los constructores son **métodos especiales destinados a inicializar los atributos** de los objetos en el momento de la creación. 
+
+La ubicación de los constructores es dentro de la clase, entre los atributos y los métodos.
+
+**Ejemplo:**
 
 ```java
-public Vehiculo() {
-    ruedas = 4;
-    color = "Azul eléctrico";
-    motor = "SDI 1.9";
+public class Vehiculo {
+    //Atributos
+    ...
+        
+    //Constructores (aquí insertaremos los constructores)
+    ...
+    
+    //Métodos
+    ...  
+}
+```
+
+
+
+**Sintaxis:** Se pone el modificador de acceso `public` y seguido del nombre de la clase (empezando por mayúscula) y se ponen los paréntesis como en cualquier método.
+
+```java
+//Archivo Vehiculo.java
+public class Vehiculo {
+    //Atributos
+    public int ruedas;
+    public String color;
+    public String motor;
+
+    //Constructor
+    public Vehiculo() {
+        ruedas = 4;
+        color = "Azul eléctrico";
+        motor = "SDI 1.9";
+    }
+
+    //Métodos
+    ...
 }
 ```
 
 Así, todos los objetos creados usando el constructor que no recibe ningún parámetro, **llamado constructor por defecto**, tendrá los atributos ya inicializados a los valores deseados.
 
-Si queremos pasarle unos valores concretos al constructor, se lo podemos pasar como parámetros (recordemos los constructores son métodos), y podemos asignarles a los atributos los valores recibidos por parámetros.
+Si queremos pasarle unos valores concretos al constructor, se lo podemos pasar como parámetros (recordemos que los constructores son métodos), y podemos asignarles a los atributos los valores recibidos por parámetros.
 
 ```java
+...
+//Constructores (podemos crear todos los constructores que necesitemos)
+//   Por defecto
+public Vehiculo() {
+    ruedas = 4;
+    color = "Azul eléctrico";
+    motor = "SDI 1.9";
+}
+
+//   Con parámetros
 public Vehiculo(int ruedasRecibidas, String colorRecibido, String motorRecibido) {
     ruedas = ruedasRecibidas;
     color = colorRecibido;
     motor = motorRecibido;
 }
+...
 ```
 
 Ahora para crear el objeto, tendremos dos opciones, podemos usar el constructor por defecto, o el constructor con parámetros, dependiendo de los valores que queramos en el nuevo objeto.
@@ -179,11 +270,17 @@ Vehiculo seatAzul = new Vehiculo(); //Tendrá los valores por defecto, 4, Azul e
 Vehiculo pandaRojo = new Vehiculo(4, "Rojo", "Gasolina 2cv"); //Tendrá los valores recibidos
 ```
 
-Podemos crear tantos constructores como necesitemos, con las combinaciones que queramos. Hasta incluso podemos no crear ningún constructor (como en el primer ejemplo). Si en una clase, no le añadimos ningún constructor, la JVM incluirá un constructor por defecto vacío para que podamos crear objetos de dicha clase. 
+El IDE nos mostrará los distintos constructores que tenemos para indicarnos las distintas formas que tenemos de instanciar objetos de una clase:
 
-> **Importante:** Se añadirá un constructor por defecto únicamente si NO TENEMOS NINGUNO. Si le creamos un constructor (o más de uno), sea el que sea, la clase tendrá ESE constructor(es) y la JVM no nos incluirá nada.  
+![IDE muestra los distintos constructores que tiene una clase](img/03-poo/image-20240919134804492.png)
 
-# Características
+**Podemos crear tantos constructores como necesitemos**, con las combinaciones que queramos. Hasta incluso podemos no crear ningún constructor (como en el primer ejemplo). Si en una clase no le añadimos ningún constructor, la JVM incluirá un constructor por defecto vacío para que podamos crear objetos de dicha clase. 
+
+> [!warning]
+>
+> Se añadirá un constructor por defecto **únicamente si NO TENEMOS NINGUNO**. Si le creamos un constructor (o más de uno), sea el que sea, la clase tendrá ESE constructor(es) y la JVM no nos incluirá nada extra.  
+
+# Características de la POO
 
 Java es un lenguaje de programación totalmente orientado a objetos, lo que significa que todos los conceptos definidos por este paradigma de programación son aplicables a este lenguaje.
 
@@ -200,15 +297,35 @@ Los conceptos que trataremos serán los siguientes:
 
 ## Abstracción
 
-La abstracción es como se pueden representar los objetos en modo de código. Es un método por el cual “extraemos” una determinada entidad de la realidad así como las características y funciones que desempeñan. Estos son representados en clases por medio de atributos y métodos de dicha clase.
+La abstracción es como se pueden representar los objetos en modo de código. Es un técnica por la cual “extraemos” una determinada entidad de la realidad así como las características y funciones que desempeñan. Estos son representados en clases por medio de atributos y métodos de dicha clase.
 
-Un ejemplo sencillo para comprender este concepto sería la abstracción de un Automóvil. Vamos a sacar de esta entidad sus características por ejemplo: color, año de fabricación, modelo, etc. Y ahora sacamos sus métodos o funciones típicas de esta entidad como por ejemplo: frenar, encender, etc. A esto se le llama abstracción.
+Un ejemplo sencillo para comprender este concepto sería la abstracción de un Automóvil. Vamos a extraer de esta entidad sus características por ejemplo: color, año de fabricación, modelo, etc. Y ahora extraemos sus métodos o funciones típicas de esta entidad como por ejemplo: frenar, encender, etc. A esto se le llama abstracción.
 
 Podemos decir de alguna forma, que la **abstracción es ponerle límites al objeto que queremos crear**, centrándonos en los atributos que necesitamos, y obviando los innecesarios o irrelevantes para nuestra tarea.
 
+> [!tip]
+>
+> La abstracción es la simplificación de la complejidad al ocultar detalles innecesarios y resaltar los aspectos esenciales.
+>
+> ![imagen abstracta de una casa realizada por un niño pequeño](img/03-poo/caracteristica-abstraccion.jpg)
+
+
+
 ## Encapsulación
 
-La encapsulación, aplicada al contexto de creación de una clase, es un concepto que se basa en **mantener aislados del exterior los atributos y métodos de la clase.** Para lograr esto, los atributos en lugar de usar el modificador `public` como hemos visto, ahora usaremos **`private`**, permitiendo que el acceso a los mismos sólo pueda realizarse desde el interior de la clase (desde sus propios métodos).
+### Concepto
+
+La **encapsulación** en programación es como ponerle una **funda protectora** a un objeto. Te permite **esconder** los detalles internos de cómo funciona, mostrando solo lo que necesitas usar.
+
+<img src="img/03-poo/caracteristica-encapsulacion.jpg" alt="Una única capsula, sin fondo y sin más adornos. Una imagen de una capsula encima de una superficia limpia y pura" style="width:40%" />
+
+Imagina que tienes un control remoto. Sabes que al presionar botones pasa algo (sube el volumen, cambia el canal), pero no necesitas saber cómo funcionan los circuitos internos. ¡Solo presionas los botones y listo! Eso es encapsulación: proteges la parte interna y solo dejas que otros interactúen con ciertas partes (los botones).
+
+Nuestro objetivo es **mantener aislados del exterior los atributos y métodos de la clase.** Para lograr esto, los atributos en lugar de usar el modificador `public` como hemos visto, ahora usaremos **`private`**, permitiendo que el acceso a los mismos sólo pueda realizarse desde el interior de la clase (desde sus propios métodos).
+
+|                    Sin getters y setters                     |                    Con getters y setters                     |
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
+| ![Una máquina típica de chicles con una bola de cristal arriba llena de chicles, y en la parte de abajo un hueco donde poner la moneda, un mecanismo para girar la moneda, y un orificio por el que salen los chicles](img/03-poo/encapsulacion-singettersetter.jpg) | ![Un bol de cristal lleno de bolas de chicle](img/03-poo/encapsulacion-congettersetter.jpg) |
 
 La encapsulación de los atributos es un mecanismo de protección de los datos pues, al impedir el acceso directo a los mismos desde el exterior de la clase, evitamos que se pueda asignar un valor inapropiado al atributo y dejar así al objeto en un estado inestable. Por ejemplo en el caso de la Clase Coche, con su atributo potencia, si no se protege el atributo declarándolo como privado, desde un código externo a la clase se podrá hacer algo como esto:
 
@@ -216,7 +333,9 @@ La encapsulación de los atributos es un mecanismo de protección de los datos p
 coche1.potencia = -10; //Lo cual no tendría sentido
 ```
 
-Ahora mismo, los atributos están disponibles tanto para lectura, como para escritura (como cualquier variable), al haber sido declarados como `public`.
+Ahora mismo, los atributos están disponibles tanto para lectura como para escritura (como cualquier variable), al haber sido declarados como `public`.
+
+### Nomenclatura en Java
 
 De cara a proporcionar un acceso controlado desde el exterior a los atributos encapsulados por la clase, ésta debe disponer de unos métodos de tipo `get` y tipo `set` que permite realizar las operaciones de lectura y escritura sobre los atributos, respectivamente.
 
@@ -228,8 +347,6 @@ setNombreAtributo
 ```
 
 Donde `NombreAtributo` es el nombre que se asigna al método, que usaremos para acceder al atributo encapsulado, y que deberá coincidir con el nombre del atributo. Al usar camelCase, ahora se usará la palabra `get` o `set` (en minúscula) seguido del nombre del atributo empezando ahora por mayúscula.
-
-{{ Explicar que los booleanos son isNombreAtributo }}
 
 Por ejemplo, para encapsular el atributo potencia en la clase Coche, y proporcionar un acceso controlado al mismo a través de los getter y setter, deberíamos escribir el siguiente código:
 
@@ -254,9 +371,33 @@ public class Coche {
 
 Podemos observar que ahora los atributos lo declaramos como `private`, de forma que ya desde el exterior de la clase **no podemos acceder a los atributos, pero si a los métodos**, ya que son `public`. Y ahora tenemos métodos por separado para acceder al atributo potencia para **obtener su valor** (getter), y otro para **modificar su valor** (setter). Pudiendo construirlos o no, para así dar acceso o no, a los atributos según nos convenga.
 
-> **Nota:** Hay que tener claro, que el acceso a los atributos se lo limitamos desde el exterior de la clase según su modificador de acceso (`public` o `private`). Desde el interior de la clase, los atributos SIEMPRE podrán ser accesibles, sean cual sean su modificador de acceso.
+> [!warning]
+>
+> Hay que tener claro, que el acceso a los atributos se lo limitamos desde el exterior de la clase según su modificador de acceso (`public` o `private`). Desde el interior de la clase, los atributos SIEMPRE podrán ser accesibles, sean cual sean su modificador de acceso.
 
 Otra ventaja que nos proporciona la encapsulación está relacionada con evitar que los atributos tengan valores inestables (no deseados). Por ejemplo, podemos ver en el ejemplo anterior, que el *setter*, el atributo `potencia` solo se verá modificado en caso de que sea positivo, ignorando cualquier valor negativo recibido por parámetros. Antes eso era imposible, ya que al usar los atributos como variables, podíamos asignarles cualquier valor (dentro de su tipo) sin restricciones.
+
+> [!note]
+>
+> Para un atributo booleano en Java, los **getters** siguen una nomenclatura especial. El **getter** suele empezar con `is` seguido del nombre del atributo con la primera letra en mayúscula. Por ejemplo, si tienes un atributo `boolean activo`, el **getter** sería `isActivo()` y el **setter** (quedaría igual) sería `setActivo(boolean valor)`. 
+>
+> ```java
+> public class Usuario {
+>     private boolean activo;  // Atributo booleano
+> 
+>     // Getter para el atributo booleano
+>     public boolean isActivo() {
+>         return activo;
+>     }
+> 
+>     // Setter para el atributo booleano
+>     public void setActivo(boolean valor) {
+>         activo = valor;
+>     }
+> }
+> ```
+
+
 
 ### Palabra reservada THIS
 
@@ -274,7 +415,7 @@ public Vehiculo(int ruedas, String color, String motor) {
 }
 ```
 
-En estos casos, Java no podría diferenciar si nos estamos refiriendo al nombre del parámetro o al nombre de los atributos. Una solución es cambiarle los nombres a los parámetros y así funcionaría (como hicimos al explicar los constructores). Pero esa solución dificulta la legibilidad y complicaría el código.
+En estos casos, Java no podría diferenciar si nos estamos refiriendo al nombre del parámetro o al nombre de los atributos. Una solución es cambiarle los nombres a los parámetros y así funcionaría (como hicimos al explicar los constructores o en los setters). Pero esa solución dificulta la legibilidad y complicaría el código.
 
 La solución es que para referirnos a los atributos y métodos de ESTA clase que estamos creando, se usa la palabra reservada <kbd>this</kbd>.
 
@@ -292,11 +433,17 @@ Pasaría exactamente lo mismo si en lugar de un parámetro recibido fuera una va
 
 Es una forma de hacer referencia al objeto antes de que este sea creado. Por esa razón usamos `this` y no el nombre del objeto. El objeto todavía no ha sido creado por lo que no tiene un identificador asignado.
 
-> 💡 Recuerda, usando `this` referenciamos a ESTE objeto desde el interior de la clase. Y al escribir `this.` el IDE nos mostrará los atributos y métodos de la clase y podremos referenciarlos.
+> [!tip]
+>
+> Recuerda, usando `this` referenciamos a ESTE objeto desde el interior de la clase. Y al escribir `this.` el IDE nos mostrará los atributos y métodos de la clase y podremos referenciarlos.
+>
+> ![Ayuda del IDE usando la palabra reservada this](img/03-poo/image-20240919144406069.png)
 
 
 
 ### Modificadores de acceso
+
+{{ POR AQUI }}
 
 En Java, los modificadores de acceso **son palabras clave utilizadas para controlar el nivel de acceso a las variables, métodos y clases** en un programa. Los modificadores de acceso permiten especificar quién puede acceder a una determinada parte de un programa. Los modificadores de acceso disponibles en Java son:
 

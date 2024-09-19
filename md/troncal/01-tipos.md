@@ -60,6 +60,49 @@ Es importante mencionar que el **código byte generado en el proceso de compilac
 
 ---
 
+# Comentarios en Java
+
+Los **comentarios** son notas que puedes agregar en tu código para explicar qué está haciendo o para recordar algo importante. Son muy útiles, especialmente cuando trabajas en proyectos grandes o cuando vuelves a mirar tu código después de un tiempo. Lo mejor de todo es que los comentarios no afectan la ejecución de tu programa; Java simplemente los ignora.
+
+## Tipos de comentarios
+
+En Java, hay dos tipos de comentarios:
+
+1. **Comentarios de una sola línea**: Se utilizan para notas cortas. Empiezan con dos barras `//`. Todo lo que escribas después de `//` en esa línea será ignorado por Java.
+
+   **Ejemplo:**
+
+   ```java
+   // Este es un comentario de una sola línea
+   int numero = 5;  // Aquí estoy declarando una variable
+   ```
+
+2. **Comentarios de varias líneas**: Se utilizan cuando necesitas escribir más de una línea de comentarios. Empiezan con `/*` y terminan con `*/`. Todo lo que esté entre esos dos símbolos será ignorado.
+
+   **Ejemplo:**
+
+   ```java
+   /* Este es un comentario
+      de varias líneas. Aquí
+      puedo explicar más a fondo
+      lo que hace el código. */
+   int resultado = 10 + 20;  // Suma 10 y 20
+   ```
+
+## ¿Por qué son importantes los comentarios?
+
+- **Claridad**: Ayudan a que tú y otros programadores entiendan mejor el código. Es como dejar pistas para el futuro.
+- **Mantenimiento**: Si tienes que volver a mirar tu código más adelante, los comentarios te recordarán qué estaba pasando.
+- **Colaboración**: Si trabajas en equipo, los comentarios son una forma de comunicarte con tus compañeros sobre lo que hace cada parte del código.
+
+## Consejo
+
+No abuses de los comentarios. Si tu código es claro y fácil de entender, es posible que no necesites explicar cada línea. Usa comentarios para aclarar la lógica o para notas importantes, pero evita hacer comentarios obvios (como el del ejemplo anterior 🙄).
+
+Los comentarios son una herramienta esencial en la programación, y usarlos correctamente te hará un mejor programador y sobre todo... mejor persona 😜.
+
+---
+
 # Tipos de datos
 
 **Java es un lenguaje fuertemente tipado**, y se ha de especificar los tipos de datos en la creación de variables, objetos, atributos, valores devueltos por los métodos y parámetros recibidos por los métodos. 
@@ -70,7 +113,24 @@ En programación, una variable está formada por un espacio en memoria y un nomb
 
 <img src="img/01-tipos/variable.jpeg" alt="una caja de cartón con un número 23 dentro como una luz de neón azul y un letrero que dice 'edad'" style="width: 50%" />
 
+Imagina que tienes una cajita en la que puedes guardar cosas, y a esa cajita le pones un nombre. En Java, a esas cajitas las llamamos **variables**. Pueden guardar casi cualquier cosa: números, letras, palabras... ¡lo que quieras!
+
+```java
+int miNumero = 5;
+```
+
+En este caso, hemos creado una cajita llamada <kbd>miNumero</kbd> y hemos guardado un 5 dentro. ¡Así de simple! Y si un día decides que en vez de un 5 quieres guardar un 10, solo tienes que cambiarlo. 
+
 ### Reglas para los identificadores
+
+<div style="border: 1px solid red; background-color: #f8d7da; color: #721c24; padding: 15px; border-radius: 5px; text-align: center; font-family: Arial, sans-serif;">
+    <p style="font-size: 1.5rem">🚨⚠️MUY IMPORTANTE⚠️🚨</p>
+	<p>
+        Las siguientes normas son de las más importantes de todo Java. Presta especial atención.
+    </p>
+</div>
+
+Las variables tienen nombres llamados **identificadores**, y esos nombres deben cumplir unas reglas:
 
 - Deben empezar por una letra y en minúscula. En Java se usa la notación camelCase.
 - Pueden contener números, pero no podrán empezar por un número.
@@ -164,11 +224,10 @@ En Java, los literales también tienen su tipado, y siguen las siguientes reglas
 - Los literales de carácter, se delimitan por comillas simples `''` ,  o bien por un número entero (ver ejemplo anterior).
 - Los literales booleanos, serán `true` o `false`.
 
-> [!CAUTION]
->
-> <span style="font-size: 2rem" >🚨🚨🚨IMPORTANTE 🚨🚨🚨</span> 
->
-> Las reglas arriba indicadas son muy importantes. Importantísimas. MUY IMPORTANTES. **MUCHO**. Avisados estáis 🫵.
+<div style="border: 1px solid red; background-color: #f8d7da; color: #721c24; padding: 15px; border-radius: 5px; text-align: center; font-family: Arial, sans-serif;">
+    <p style="font-size: 1.5rem">🚨⚠️MUY IMPORTANTE⚠️🚨</p>
+	<p>Las reglas arriba indicadas son muy importantes. Importantísimas. MUY IMPORTANTES. MUCHO. Avisados estáis 🫵.</p>
+</div>
 
 Los tipos de datos numéricos, siempre que no se pierda información, pueden “caber” en variables de tipo de dato de igual tipo o más grande, no necesitando ninguna conversión explícita. 
 
