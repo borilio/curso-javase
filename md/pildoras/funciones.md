@@ -79,7 +79,9 @@ Al hacer la llamada a la función, le pasamos como parámetros un $5$ y un $3$. 
 
 La función ejecutará su comportamiento (elevar la base $x$ a la potencia $y$), y retornará el resultado. En nuestro ejemplo será $125$.
 
-> 💡La gran ventaja de las funciones, es que las defines **UNA VEZ**, y las llamas **MUCHAS VECES**, las que necesites. Imagina por un momento que la función hace operaciones mucho más complejas que la de ejemplo. Ahí es cuando le vemos mayor ventajas a las funciones. También reducen la complejidad de nuestros algoritmos, ayudándonos en tareas repetitivas.
+> [!tip]
+>
+> La gran ventaja de las funciones, es que las defines **UNA VEZ**, y las llamas **MUCHAS VECES**, las que necesites. Imagina por un momento que la función hace operaciones mucho más complejas que la de ejemplo. Ahí es cuando le vemos mayor ventajas a las funciones. También reducen la complejidad de nuestros algoritmos, ayudándonos en tareas repetitivas.
 
 ## Funciones definidas en Java
 
@@ -145,15 +147,17 @@ letras1.length(); // Daría un error de compilación debido a que letras1 no es 
 Las funciones `.toUpperCase()` y `.toLowerCase()` devuelven la misma cadena, pero convirtiendo todos los caracteres alfabéticos en mayúsculas o minúsculas, respectivamente.
 
 ```java
-String saludo = "Hola";
-System.out.println(saludo.toUpperCase()); // Imprime "HOLA"
-System.out.println(saludo.toLowerCase()); // Imprime "hola"
+String saludo = "Hola!";
+System.out.println(saludo.toUpperCase()); // Imprime "HOLA!"
+System.out.println(saludo.toLowerCase()); // Imprime "hola!"
 
 String nombreMin = "Brad Pitt".toLowerCase(); // nombreMin = "brad pitt"
 String nombreMay = nombreMin.toUpperCase();   // nombreMay = "BRAD PITT" 
 ```
 
-> 💡En los ejemplos se puede apreciar que la conversión solo afecta a los caracteres que deben cambiar de mayúsculas a minúsculas o viceversa, manteniendo el resto sin alteraciones. 
+> [!note]
+>
+> En los ejemplos se puede apreciar que la conversión solo afecta a los caracteres que deben cambiar de mayúsculas a minúsculas o viceversa, manteniendo el resto sin alteraciones. 
 
 ### Función String.substring()
 
@@ -181,18 +185,22 @@ int longitud = cadena.length(); // Contiene 10
 
 Como ya hemos visto, los IDEs (Entorno de desarrollo integrado) son programas que facilitan la tarea de programar en un determinado lenguaje, como Java. Concretamente para las funciones pueden ayudarnos ofreciéndonos la siguiente información:
 
-- **Autocompletado**: Nos mostrará sugerencias de posibles palabras clave, variables, clases o funciones que coincidan con lo que se está escribiendo. Esto nos ayuda a ahorrar tiempo y evitar errores de sintaxis o de escritura: Por ejemplo, al escribir `Math.` nos mostrará una lista de las funciones disponibles en la clase `Math`, como `abs()`, `pow()`, `sin()`, `cos()`, etc.
-> Ejemplo de autocompletado con la clase `Math`. Podemos ver también que nos indican el número de parámetros recibidos, los tipos de datos admitidos, y el tipo del valor devuelto.
->
-> <img src="img/funciones/image-20231024124657016.png" alt="Ejemplo de uso de autocompletado con Math" style="zoom:67%;" />
+- **Autocompletado**: Nos mostrará sugerencias de posibles palabras clave, variables, clases o funciones que coincidan con lo que se está escribiendo. Esto nos ayuda a ahorrar tiempo y evitar errores de sintaxis o de escritura: Por ejemplo, al escribir `Math.` nos mostrará una lista de las funciones disponibles en la clase `Math`, como `abs()`, `pow()`, `PI`, `sin()`, `cos()`, etc.
+    > [!tip]
+    >
+    > Ejemplo de autocompletado con la clase `Math`. Podemos ver también que nos indican el número de parámetros recibidos, los tipos de datos admitidos, y el tipo del valor devuelto.
+    >
+    > <img src="img/funciones/image-20231024124657016.png" alt="Ejemplo de uso de autocompletado con Math" style="zoom:67%;" />
 
 - **Documentación:** También suelen tener una función que permite acceder a la documentación oficial del lenguaje, mostrando información sobre el uso, los parámetros, el valor de retorno así como el tipado de los mismos. Normalmente para abrir la documentación, bastará con dejar el ratón unos segundos sobre el nombre de la función.
-> Ejemplo de documentación de la función `Math.abs()`. Vemos una descripción en inglés de la función. Normalmente la descripción será demasiado técnica y tendremos que abstraernos un poco de tanta información proporcionada. 
->
-> - `Params:` Explica todos los argumentos que puede recibir la función y su papel en el algoritmo interno de la misma.
-> - `Returns:` Explica el valor retornado.
->
-> <img src="img/funciones/image-20231024125647752.png" alt="image-20231024125647752" style="zoom:67%;" />
+    > [!tip]
+    >
+    > Ejemplo de documentación de la función `Math.abs()`. Vemos una descripción en inglés de la función. Normalmente la descripción será demasiado técnica y tendremos que abstraernos un poco de tanta información proporcionada. 
+    >
+    > - `Params:` Explica todos los argumentos que puede recibir la función y su papel en el algoritmo interno de la misma.
+    > - `Returns:` Explica el valor retornado.
+    >
+    > <img src="img/funciones/image-20231024125647752.png" alt="image-20231024125647752" style="zoom:67%;" />
 
 
 
@@ -209,7 +217,7 @@ En programación, el encadenamiento de funciones es una práctica que implica ll
 
 <img src="img/funciones/function_machines_composed.png" alt="Ejemplo de funciones encadenadas. Una función recibe como parámetro el valor retornado " style="zoom:67%;" />
 
-Hay que tener en cuenta que el tipo de dato producido por una función deberá admitirse como parámetro en la siguiente función. En el dibujo lo vemos representado en que la función $g$ retorna cuadrados, y por eso los podemos usar directamente como parámetros en la función $f$.
+Hay que tener en cuenta que el tipo de dato producido por una función deberá admitirse como parámetro en la siguiente función. En el dibujo lo vemos representado en que la función $g$ retorna cuadrados y por eso los podemos usar directamente como parámetros en la función $f$.
 
 Veamos un ejemplo en código Java:
 
