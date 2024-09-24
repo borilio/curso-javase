@@ -280,6 +280,8 @@ El IDE nos mostrará los distintos constructores que tenemos para indicarnos las
 >
 > Se añadirá un constructor por defecto **únicamente si NO TENEMOS NINGUNO**. Si le creamos un constructor (o más de uno), sea el que sea, la clase tendrá ESE constructor(es) y la JVM no nos incluirá nada extra.  
 
+---
+
 # Características de la POO
 
 Java es un lenguaje de programación totalmente orientado a objetos, lo que significa que todos los conceptos definidos por este paradigma de programación son aplicables a este lenguaje.
@@ -323,9 +325,6 @@ Imagina que tienes un control remoto. Sabes que al presionar botones pasa algo (
 
 Nuestro objetivo es **mantener aislados del exterior los atributos y métodos de la clase.** Para lograr esto, los atributos en lugar de usar el modificador `public` como hemos visto, ahora usaremos **`private`**, permitiendo que el acceso a los mismos sólo pueda realizarse desde el interior de la clase (desde sus propios métodos).
 
-|                    Sin getters y setters                     |                    Con getters y setters                     |
-| :----------------------------------------------------------: | :----------------------------------------------------------: |
-| ![Una máquina típica de chicles con una bola de cristal arriba llena de chicles, y en la parte de abajo un hueco donde poner la moneda, un mecanismo para girar la moneda, y un orificio por el que salen los chicles](img/03-poo/encapsulacion-singettersetter.jpg) | ![Un bol de cristal lleno de bolas de chicle](img/03-poo/encapsulacion-congettersetter.jpg) |
 
 La encapsulación de los atributos es un mecanismo de protección de los datos pues, al impedir el acceso directo a los mismos desde el exterior de la clase, evitamos que se pueda asignar un valor inapropiado al atributo y dejar así al objeto en un estado inestable. Por ejemplo en el caso de la Clase Coche, con su atributo potencia, si no se protege el atributo declarándolo como privado, desde un código externo a la clase se podrá hacer algo como esto:
 
@@ -335,18 +334,62 @@ coche1.potencia = -10; //Lo cual no tendría sentido
 
 Ahora mismo, los atributos están disponibles tanto para lectura como para escritura (como cualquier variable), al haber sido declarados como `public`.
 
+### Solución
+
+Una vez entendido el concepto de **encapsulación**, es fácil ver por qué necesitamos los **métodos `getters` y `setters`**. Estos métodos nos permiten **controlar** cómo se accede y modifica la información dentro de una clase.
+
+En lugar de acceder directamente a los atributos, los getters y setters funcionan como **puertas de entrada y salida**. 
+
+- Con los **getters**, permitimos que otros vean el valor de un atributo, pero sin poder modificarlo. 
+- Con los **setters**, controlamos cómo se cambia ese valor, permitiendo validar o limitar el tipo de datos que se asigna. Esto protege la información interna y evita que alguien modifique un dato de forma incorrecta o sin control.
+
+|                    Sin getters y setters                     |                    Con getters y setters                     |
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
+| ![Una máquina típica de chicles con una bola de cristal arriba llena de chicles, y en la parte de abajo un hueco donde poner la moneda, un mecanismo para girar la moneda, y un orificio por el que salen los chicles](img/03-poo/encapsulacion-singettersetter.jpg) | ![Un bol de cristal lleno de bolas de chicle](img/03-poo/encapsulacion-congettersetter.jpg) |
+
+
+
 ### Nomenclatura en Java
 
-De cara a proporcionar un acceso controlado desde el exterior a los atributos encapsulados por la clase, ésta debe disponer de unos métodos de tipo `get` y tipo `set` que permite realizar las operaciones de lectura y escritura sobre los atributos, respectivamente.
+Los **getters** y **setters** siguen una nomenclatura estándar que facilita el acceso a los atributos de una clase de manera consistente y comprensible. Aquí están las reglas:
 
-La nomenclatura de estos métodos, conocidos también como **métodos de propiedad**, sigue el convenio:
+#### Getters
 
+Para cualquier tipo de atributo que no sea `boolean`, el nombre del getter empieza con `get` seguido del nombre del atributo, con la primera letra en **mayúscula**.
+
+**Ejemplo:** Si tienes un atributo `nombre`, el getter será:
+
+```java
+public String getNombre() {
+    return nombre;
+}
 ```
-getNombreAtributo
-setNombreAtributo
+
+Si el atributo es de tipo **boolean**, el getter comienza con `is` en lugar de `get`.
+
+**Ejemplo:** Para un atributo `activo`, el getter será:
+
+```java
+public boolean isActivo() {
+    return activo;
+}
 ```
 
-Donde `NombreAtributo` es el nombre que se asigna al método, que usaremos para acceder al atributo encapsulado, y que deberá coincidir con el nombre del atributo. Al usar camelCase, ahora se usará la palabra `get` o `set` (en minúscula) seguido del nombre del atributo empezando ahora por mayúscula.
+#### Setters
+
+Para cualquier tipo de atributo (incluyendo `boolean`), el setter empieza con `set` seguido del nombre del atributo, también con la primera letra en **mayúscula**.
+
+**Ejemplo:** Si tienes un atributo `nombre`, el setter será:
+
+```java
+public void setNombre(String nuevoNombre) {
+    nombre = nuevoNombre;
+}
+```
+
+
+
+### Aplicando la encapsulación completa
 
 Por ejemplo, para encapsular el atributo potencia en la clase Coche, y proporcionar un acceso controlado al mismo a través de los getter y setter, deberíamos escribir el siguiente código:
 
@@ -369,37 +412,31 @@ public class Coche {
 }
 ```
 
-Podemos observar que ahora los atributos lo declaramos como `private`, de forma que ya desde el exterior de la clase **no podemos acceder a los atributos, pero si a los métodos**, ya que son `public`. Y ahora tenemos métodos por separado para acceder al atributo potencia para **obtener su valor** (getter), y otro para **modificar su valor** (setter). Pudiendo construirlos o no, para así dar acceso o no, a los atributos según nos convenga.
+Con los nuevos cambios podemos observar que:
 
-> [!warning]
->
-> Hay que tener claro, que el acceso a los atributos se lo limitamos desde el exterior de la clase según su modificador de acceso (`public` o `private`). Desde el interior de la clase, los atributos SIEMPRE podrán ser accesibles, sean cual sean su modificador de acceso.
-
-Otra ventaja que nos proporciona la encapsulación está relacionada con evitar que los atributos tengan valores inestables (no deseados). Por ejemplo, podemos ver en el ejemplo anterior, que el *setter*, el atributo `potencia` solo se verá modificado en caso de que sea positivo, ignorando cualquier valor negativo recibido por parámetros. Antes eso era imposible, ya que al usar los atributos como variables, podíamos asignarles cualquier valor (dentro de su tipo) sin restricciones.
+- **Los atributos son `private`**, y desde el exterior de la clase **no podemos acceder a los atributos.**
+- **Los métodos son `public`**, y desde el exterior de la clase **si podemos acceder a los métodos**. 
+- Y ahora tenemos métodos por separado:
+  - `getPotencia()`: Accede al atributo potencia **para obtener su valor** (getter).
+  - `setPotencia()`: Accede al atributo potencia **para modificar su valor** (setter).
+- Podemos asegurarnos de que el atributo potencia solo se modifique si el valor es positivo, algo que antes no era posible al asignar valores directamente sin control (como a cualquier variable). **Esto evita que un atributo pueda tener valores inestables** (no deseados).
 
 > [!note]
 >
-> Para un atributo booleano en Java, los **getters** siguen una nomenclatura especial. El **getter** suele empezar con `is` seguido del nombre del atributo con la primera letra en mayúscula. Por ejemplo, si tienes un atributo `boolean activo`, el **getter** sería `isActivo()` y el **setter** (quedaría igual) sería `setActivo(boolean valor)`. 
->
-> ```java
-> public class Usuario {
->     private boolean activo;  // Atributo booleano
-> 
->     // Getter para el atributo booleano
->     public boolean isActivo() {
->         return activo;
->     }
-> 
->     // Setter para el atributo booleano
->     public void setActivo(boolean valor) {
->         activo = valor;
->     }
-> }
-> ```
+> Los *getters* y *setters* son opcionales. Solo deberías crear los getters y setters para los atributos que realmente necesiten ser accesibles o modificables desde fuera de la clase, manteniendo así un mayor control y protegiendo la integridad de los datos.
 
+> [!warning]
+>
+> El acceso a los atributos desde fuera de la clase se limita según su modificador (`public` o `private`), pero desde dentro de la clase siempre son accesibles, independientemente de su modificador.
+
+> [!important]
+>
+> Aunque seas tú quien programa el objeto, la encapsulación protege los valores de futuros errores o modificaciones no controladas, incluso cuando el código crezca o sea usado por otros.
 
 
 ### Palabra reservada THIS
+
+#### Problema
 
 Desde el interior de la clase, podemos referirnos a los atributos directamente, ya que podemos entender que los atributos están declarados de forma global para toda la clase. Pero, ¿que pasaría si declaramos una variable en un método con el mismo nombre que un atributo?. Por ejemplo, en un constructor hacemos lo siguiente:
 
@@ -416,6 +453,8 @@ public Vehiculo(int ruedas, String color, String motor) {
 ```
 
 En estos casos, Java no podría diferenciar si nos estamos refiriendo al nombre del parámetro o al nombre de los atributos. Una solución es cambiarle los nombres a los parámetros y así funcionaría (como hicimos al explicar los constructores o en los setters). Pero esa solución dificulta la legibilidad y complicaría el código.
+
+#### Solución
 
 La solución es que para referirnos a los atributos y métodos de ESTA clase que estamos creando, se usa la palabra reservada <kbd>this</kbd>.
 
@@ -443,8 +482,6 @@ Es una forma de hacer referencia al objeto antes de que este sea creado. Por esa
 
 ### Modificadores de acceso
 
-{{ POR AQUI }}
-
 En Java, los modificadores de acceso **son palabras clave utilizadas para controlar el nivel de acceso a las variables, métodos y clases** en un programa. Los modificadores de acceso permiten especificar quién puede acceder a una determinada parte de un programa. Los modificadores de acceso disponibles en Java son:
 
 - `private`: Este modificador de acceso indica que el miembro de la clase solo puede ser accedido por miembros de la misma clase.
@@ -452,7 +489,9 @@ En Java, los modificadores de acceso **son palabras clave utilizadas para contro
 - `protected`: Este modificador de acceso indica que el miembro de la clase puede ser accedido por miembros del mismo paquete y por cualquier subclase de la clase (esté en el paquete que esté).
 - `public`: Este modificador de acceso indica que el miembro de la clase puede ser accedido desde cualquier lugar del programa.
 
-> **⚠️Importante**: por defecto, todos los miembros de una clase (variables, métodos, constructores, etc.) son de acceso `default` (sin modificador) a menos que se especifique explícitamente un modificador de acceso.
+> [!important]
+>
+> ⚠️ Por defecto, todos los miembros de una clase (variables, métodos y constructores) son de acceso `default` (sin modificador) a menos que se especifique explícitamente un modificador de acceso.
 
 Los modificadores de acceso se utilizan para proteger los miembros de una clase de ser modificados o accedidos de forma no deseada, y para asegurar que solo los miembros apropiados de la clase puedan acceder a ellos. También se utilizan para controlar el alcance de las variables y métodos y para asegurar que las clases y objetos solo interactúen de manera segura y controlada.
 
@@ -464,11 +503,21 @@ A continuación una tabla resumen con los modificadores de acceso en Java:
 
 La herencia es quizá la característica más interesante y potente que ofrecen los lenguajes orientados a objetos. Mediante ella, es posible **crear clases que dispongan de forma automática de todos atributos y métodos definidos en clases ya existentes**.
 
-Esto es particularmente útil en aquellos contextos dónde necesitamos utilizar una clase con los métodos incluidos en otra ya existente, pero a la que queremos añadir una nueva funcionalidad; en vez de modificar la clase original, emplearemos la herencia para crear una nueva clase con todos los métodos definidos en la primera y sobre ella incluir los nuevos elementos que se necesiten.
+Es como cuando heredamos cosas de nuestros padres. La idea es que una clase, llamada **clase hija** o **subclase**, puede heredar características y comportamientos de otra clase, llamada **clase padre** o **superclase**.
 
-Como vemos, la herencia **representa un excelente mecanismo de reutilización de código**, incorporando en las nuevas clases los métodos definidos en otras sin tener que reescribirlos de nuevo.
+Cuando creas una **clase hija**, esta "hereda" todos los atributos y métodos de su **clase padre**, como si le dijera: "Oye, no me repitas lo que ya tienes, ¡dame lo tuyo!". Esto es súper útil, porque te ahorra código y te permite **reutilizar** cosas que ya funcionan bien en una clase existente sin tener que repetir el código.
 
-La relación de herencia entre dos clases se expresa mediante una flecha que sale DESDE la clase que hereda, conocida también como **subclase**, y que apunta a la clase heredada, llamada también **superclase**.
+Ventajas:
+
+- **Reutilización de código**: Evitas escribir lo mismo una y otra vez.
+
+- **Organización**: Puedes organizar tus clases de manera lógica y jerárquica.
+
+- **Extensibilidad**: Puedes añadir nuevas funcionalidades a tus clases hijas sin tocar la clase padre.
+
+  
+
+La relación de herencia entre dos clases se expresa en los diagramas UML mediante una flecha que sale DESDE la clase hija, conocida también como **subclase**, y que apunta a la clase padre, llamada también **superclase**.
 
 ![herencia1](img/03-poo/03.png)
 
@@ -479,13 +528,19 @@ En la siguiente figura tenemos algunos ejemplos de clases relacionadas a través
 
 
 
-En todos ellos, las superclases incluirían los miembros (atributos y métodos) generales comunes a determinadas familias de objetos, pudiendo añadir las subclases, los métodos y atributos específicos de cada tipo particular.
+En todos ellos, las superclases incluirían los miembros (atributos y métodos) generales comunes, y las subclases podrán añadir sus propios métodos y atributos específicos para cada clase particular.
 
 En este diagrama UML más específico, con la clase `Vehículo`, creamos una clase `Coche` que hereda de `Vehículo`.
 
 ![herencia-vehículo](img/03-poo/07.png)
 
 La clase `Vehículo` incluye atributos y métodos que son comunes para todo tipo de vehículo, como el color o el número de ruedas de éste, mientras que `Coche` añade características que son propias solamente de este tipo de vehículos, tales como la potencia o las operaciones de acelerado y frenado.
+
+> [!caution]
+>
+> La herencia es útil, pero ¡ojo! No la uses por todo. Debes aplicar herencia solo cuando las clases realmente tienen una relación de "es-un". Por ejemplo, un `Perro` **es un** `Animal`, pero una `Rueda` no es un `Coche`, aunque esté relacionada con él. La clase hija siempre tiene que ser “lo mismo” pero más específico. O lo que es lo mismo, la clase padre siempre tiene que ser “lo mismo” pero más genérico.
+
+
 
 ### Ejemplo en Java
 
@@ -515,11 +570,13 @@ public class Coche extends Vehiculo {
 }
 ```
 
-Al instanciar un objeto de la clase `Coche`, podremos comprobar fácilmente que tiene los atributos y métodos propios de `Coche`, además de los heredados de la clase padre o superclase.
+Al instanciar un objeto de la clase `Coche`, podremos comprobar fácilmente que tiene los atributos y métodos específicos de `Coche`, además de los heredados de la clase padre o superclase.
 
 ![herencia-coche](img/03-poo/08.png)
 
-> 👀 En la captura podemos comprobar que el objeto `coche` tiene los métodos de `Vehiculo` y `Coche`, pero no podremos acceder DIRECTAMENTE a los atributos, ya que son privados (tanto los propios como los heredados). Desde el interior de la clase `Coche` podremos acceder a los atributos propios usando `this`, y a los heredados usando los *getters* y *setters*, ya que estos si son públicos. Si los atributos heredados (`color` y `numeroRuedas`) no tuvieran los *getters* ni *setters* y/o no fueran públicos, no tendríamos acceso a los atributos heredados de ninguna forma.
+> [!important]
+>
+> 👀 En la captura podemos comprobar que el objeto `coche` tiene los métodos de `Vehiculo` y `Coche`, pero no podremos acceder DIRECTAMENTE a los atributos, ya que son privados (tanto los propios como los heredados). Desde el interior de la clase `Coche` podremos acceder a los atributos propios usando `this`, y a los heredados usando los *getters* y *setters*, ya que estos si son públicos (no están incluidos en el ejemplo). Si los atributos heredados (`color` y `numeroRuedas`) no tuvieran los *getters* ni *setters* y/o no fueran públicos, no tendríamos acceso a los atributos heredados de ninguna forma.
 
 **Los constructores no se heredan**. Cada clase tendrá sus propios constructores. Aunque hay una posibilidad de llamar a los métodos de la superclase (incluidos los constructores). 
 
@@ -541,9 +598,9 @@ Cuando se hace referencia al método `acelerar()` de la clase Helicóptero, ya n
 
 ### Palabra reservada SUPER
 
-Al usar la sobrescritura, es importante entender que no estamos **borrando** el método de la superclase para usar el nuestro propio, si no que lo añadimos y usaremos en su lugar por defecto. Siempre podremos usar los métodos propios usando <kbd>this</kbd> y podremos hacer referencia a la superclase con la palabra reservada <kbd>super</kbd>. Por ejemplo, si hemos sobrescrito el método `.acelerar()` del Vehículo en la clase Helicóptero, desde el interior de la clase Helicóptero podremos hacer `this.acelerar()`, llamando así al método del Helicóptero, y `super.acelerar()` realizará una llamada al método de la clase Vehículo. 
+Al usar la sobrescritura, es importante entender que **no estamos borrando el método** de la superclase para usar el nuestro propio, si no que lo añadimos y usaremos en su lugar por defecto. Siempre podremos usar los métodos propios usando <kbd>this</kbd> y podremos hacer referencia a la superclase con la palabra reservada <kbd>super</kbd>. Por ejemplo: Si sobrescribimos el método `.acelerar()` en la clase Helicóptero, dentro de Helicóptero podemos usar `this.acelerar()` para llamar al método del Helicóptero, mientras que `super.acelerar()` llamará al método de la clase Vehículo.
 
-Hay que tener en cuenta que es posible que el método de la superclase no esté adaptado al de la subclase (por algún motivo se sobrescribió), pero es bueno saber que está ahí y que podemos hacer uso de él.
+Hay que tener en cuenta que es posible que el método de la clase padre no esté adaptado al de la hija (por algún motivo se sobrescribió), pero es bueno saber que está ahí y que podemos hacer uso de él.
 
 Con `super` también podremos hacer referencias a constructores de la superclase.
 
@@ -577,12 +634,12 @@ public class Mamifero extends Animal {
         System.out.println("Está comiendo un Mamífero");
     }
     
-    public void comerPropio(){
+    public void comerDeMamifero(){
         this.comer(); //Así usamos el comer() de ESTA clase
     }
     
-    public void comerHeredado() {
-        super.comer(); //Así usamos el comer() de la superclase Animal
+    public void comerDeAnimal() {
+        super.comer(); //Así usamos el comer() de la SUPERclase Animal
     }
 }
 ```
@@ -590,57 +647,154 @@ public class Mamifero extends Animal {
 Podemos ver que tenemos la clase `Animal` y la clase `Mamífero`, que hereda de `Animal`. 
 
 - Hemos implementado dos métodos en la clase `Mamífero` para hacer llamadas a su método `comer()` con `this`,  y al heredado, con `super`. Es importante ver que aunque se le llame sobrescritura, no estamos “borrando” el método heredado. Siempre podremos usar el de la superclase.
-- También podemos ver que en el constructor de `Mamífero`, hemos hecho una llamada al constructor de `Animal`, pasándole los parámetros que necesite. De esta forma podríamos inicializar todos los atributos heredados de golpe (sin necesidad de *setters*), y después ya inicializamos los atributos propios del `Mamífero` de manera tradicional.
+- También podemos ver que en el constructor de `Mamífero`, hemos hecho una llamada al constructor de `Animal`, pasándole los parámetros que necesite. De esta forma podríamos inicializar todos los atributos heredados de golpe (sin necesidad de *setters*), y después ya inicializamos los atributos propios del `Mamífero` de manera tradicional (`numeroMamas`).
 
+### Método `.toString()`
 
+> [!important]
+>
+
+💊 Hay una píldora donde explicamos más en profundidad la sobrescritura de este método y otros de la clase `Object`. Es un buen momento para ver todo ese contenido antes de continuar.
+
+Todos los objetos en Java heredan de la clase `Object`, lo que significa que todos tienen un método llamado `.toString()` que, por defecto, imprime una representación básica del objeto, incluyendo su nombre de clase y su código hash en hexadecimal, llamado **hashcode**.
+
+```java
+//Método toString() de la clase Object
+public String toString() {
+    return getClass().getName() + "@" + Integer.toHexString(hashCode());
+}
+```
+
+Si queremos mostrar todos los atributos de un objeto, deberíamos imprimirlos uno a uno usando sus getters. ¿Verdad? Pero esto sería tedioso si el objeto tiene muchos atributos o bien tenemos que hacer muchas veces la misma tarea. Por lo que la solución es hacerlo en un método y llamar a ese método cada vez que lo necesitemos.
+
+El método `.toString()` es un método incorporado en Java que se utiliza para devolver una representación en forma de cadena de un objeto. Este método es parte de la clase base `Object`, lo que significa que todos los objetos en Java heredan este método. Su uso es muy común cuando queremos obtener una descripción legible de un objeto.
+
+Tiene grandes ventajas:
+
+1. **Facilita la lectura**: Cuando imprimes un objeto directamente en la consola, Java llama automáticamente al método `.toString()` para mostrar una representación del objeto. Esto es especialmente útil para la depuración.
+
+2. **Personalización**: Puedes sobrescribir este método en tus propias clases para proporcionar una representación más significativa que la predeterminada (que es el hashcode).
+
+#### Cómo sobrescribir `.toString()`
+
+Para sobrescribir el método `.toString()` únicamente tienes que volver a definirlo en la clase como un método más e implementar su contenido.
+
+Aquí hay un ejemplo simple de cómo sobrescribir el método `.toString()` en una clase cualquiera:
+
+> [!note]
+>
+> 🫵Aunque aquí esté todo el código junto, cada clase deberá ir en un archivo `.java` separado con el mismo nombre de la clase.
+
+```java
+public class Persona {
+    private String nombre;
+    private int edad;
+
+    // Constructor
+    public Persona(String nombre, int edad) {
+        this.nombre = nombre;
+        this.edad = edad;
+    }
+
+    // Sobrescribimos el método toString
+    public String toString() {
+        return "Persona[nombre=" + nombre + ", edad=" + edad + "]";
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Persona persona = new Persona("Juan", 25);
+        System.out.println(persona);
+    }
+}
+```
+
+Por la consola saldría:
+
+```
+Persona[nombre=Juan, edad=25]
+```
+
+1. **Clase `Persona`**: Creamos una clase `Persona` con dos atributos: `nombre` y `edad`.
+
+2. **Constructor**: Inicializamos estos atributos a través de un constructor.
+
+3. **Sobrescritura de `.toString()`**: Sobrescribimos el método `.toString()` para que devuelva una cadena que describe el objeto `Persona` en un formato claro. Así visualizaremos todos los atributos a la misma vez en una única llamada.
+
+4. **Uso en el `main`**: Al imprimir el objeto `persona`, se invoca automáticamente el método `.toString()`, mostrando una representación legible en la consola. Puede llamarse explícitamente el método con `persona.toString()` pero no es necesario.
+
+> [!important]
+>
+> Sobrescribir el método `.toString()` es una buena práctica que mejora la legibilidad del código y facilita la depuración. Te permite definir cómo quieres que se presente la información de tus objetos de una manera clara y significativa.
+
+> [!caution]
+>
+> Si cometes un error en el nombre del método, como escribir `.tostring()` (con "s" minúscula), no estarás sobrescribiendo el método original, sino que estarás **creando un nuevo método completamente diferente**. Esto provocaría que Java siga usando el `.toString()` heredado de `Object`, que no da información útil sobre el objeto, y no el método que creaste.
 
 ## Sobrecarga de métodos
 
-La sobrecarga de métodos consiste en la posibilidad de **definir más de un método con el mismo nombre** dentro de una clase. La sobrecarga de métodos simplifica la utilización de las clases por parte de los programadores puesto que permite disponer de distintas versiones de una operación respetando el mismo nombre de método en todas ellas.
+La sobrecarga de métodos consiste en la posibilidad de **definir más de un método con el mismo nombre** dentro de una clase. La sobrecarga de métodos simplifica la utilización de las clases por parte de los programadores puesto que permite disponer de distintas versiones de una operación respetando el mismo nombre de método en todas ellas. 
 
-Un ejemplo de sobrecarga sería el de una clase que realizara operaciones matemáticas en la que la suma de números se pudiera realizar de diferentes formas, por ejemplo, una que lo hiciera a partir de los parámetros recibidos, otra a partir de los atributos de la clase y otra que sumara el contenido de una lista; las operaciones serían implementadas por tres métodos diferentes con el mismo nombre pero con diferentes parámetros.
+Esto significa que puedes definir “el mismo método” para realizar tareas similares, pero con diferentes tipos o cantidades de argumentos.
+
+Un ejemplo de sobrecarga sería el de una clase que realizara operaciones matemáticas en la que la suma de números se pudiera realizar de diferentes formas. Por ejemplo, un método que sumara los números a partir de los parámetros recibidos, otro a partir de los atributos de la clase y otro que sumara el contenido de una lista; las operaciones serían implementadas por tres métodos diferentes con el mismo nombre pero con diferentes parámetros.
 
 ```java
 public class Calculadora {
     private int acumulador;
 
-    //Devolvemos la suma de x e y
-    public int sumar(int x, int y) {
-        return x + y;
+    //Sumamos a + b, y devolvemos el resultado
+    public int sumar(int a, int b) {
+        return a + b;
     }
 
-	//Devolvemos la suma de x a acumulador
+	//Sumamos acumulador + x, y devolvemos el resultado
     public int sumar(int x) {
         this.acumulador += x;
         return this.acumulador;
     }
 
-    //Devolvemos la suma de los elementos de la lista
+    //Sumamos todos los elementos de un array y devolvemos su resultado
     public int sumar(int[] numeros) {
         int suma = 0;
-        for (int n: numeros) {
-            suma += n;
+        for (int numero: numeros) {
+            suma += numero;
         }
         return suma;
     }
 }
 ```
 
-En el ejemplo anterior, vemos que el método `sumar()`, está sobrecargado. Queremos hacer varias operaciones, todas son sumar, pero cada método actúa de una forma diferente. El primero suma dos números, el segundo acumula una cantidad en un atributo, y el tercero recorre un array y suma sus elementos. Los 3 métodos en esencia “suman”, por lo que es una ventaja no tener que cambiarlo de nombre. 
+En el ejemplo anterior vemos que el método `sumar()` está sobrecargado. Queremos hacer varias operaciones, todas son sumar, pero cada método actúa de una forma diferente. El primero suma dos números, el segundo acumula una cantidad en un atributo, y el tercero recorre un array y suma sus elementos. Los 3 métodos en esencia “suman”, por lo que es una ventaja no tener que cambiarlo de nombre. 
 
 Java sabrá en todo momento qué método es llamado, ya que cada método recibe argumentos diferentes. Si hacemos una llamada al método `sumar(4,6)`, ejecutará el primero. Si llamamos a `sumar(8)` ejecutará el segundo, y si llamamos a `sumar(numeros)`, siendo `numeros` un array definido, ejecutará el tercero. Si llamamos a `sumar("pruebaÉsta")` dará un error ya que no hay ningún método `sumar()` que reciba un String.
 
+El IDE nos ayuda en todo momento ya que al empezar a escribir `.sumar(`, nos indicará que hay tres versiones de ese método y cuales son sus posibles valores recibidos y devueltos.
+
+![Ayuda del IDE con la sobrecarga de métodos](img/03-poo/image-20240920145623516.png)
+
+> [!tip]
+>
+> 👩‍🏫¿Quizás sería buena hora de explicar Javadoc?
+
 La regla que se debe seguir a la hora de sobrecargar métodos en una clase es bastante simple y es que los **métodos sobrecargados deben diferenciarse en el número de parámetros y/o el tipo de los mismos**, siendo irrelevante el tipo de devolución de los métodos.
 
-La sobrecarga no sólo se aplica a métodos; también podemos sobrecargar los constructores de una clase, permitiendo así distintas opciones de inicialización de objetos.
+La sobrecarga no sólo se aplica a métodos; también podemos sobrecargar los constructores de una clase, permitiendo así distintas opciones de inicialización de objetos (ya lo hemos visto en la clase `Animal` anterior).
 
-> 💡 Es importante no confundir los conceptos de sobrescritura y sobrecarga. Mientras que el primero consiste en definir de nuevo un método heredado en la superclase “anulando” al anterior, la sobrecarga se basa en tener más de un método con el mismo nombre dentro de la clase (y cada método recibe unos parámetros distintos).
+> [!important]
+>
+> Es importante no confundir los conceptos de sobrescritura y sobrecarga. Mientras que la **sobrescritura consiste en definir de nuevo un método heredado** en la superclase “anulando” al anterior, la **sobrecarga se basa en tener más de un método con el mismo nombre** dentro de la clase (y cada método recibe unos parámetros distintos).
 
 
 
 ## Polimorfismo
 
-El polimorfismo, en programación orientada a objetos, se refiere a la posibilidad de acceder a un variado rango de funciones distintas a través de la misma interfaz. O sea, un mismo identificador puede tener distintas formas (distintos cuerpos de función, distintos comportamientos) dependiendo del contexto en el que se halle.
+<img src="img/03-poo/caracteristica-poliformismo.jpg" alt="persona formada por distintas partes de animales" style="width: 50%" />
+
+El polimorfismo se refiere a **la capacidad de una variable, función o método para tomar varias formas**. En términos de programación orientada a objetos, esto se traduce en que diferentes clases pueden definir métodos que se llaman igual pero que se comportan de manera diferente.
+
+Más técnicamente, se refiere a la posibilidad de acceder a un variado rango de funciones distintas a través de la misma interfaz. O sea, un mismo identificador puede tener distintas formas (distintos cuerpos de función, distintos comportamientos) dependiendo del contexto en el que se halle.
 
 Veamos un ejemplo de polimorfismo:
 
@@ -650,33 +804,107 @@ Animal b = new Mamifero();
 Animal c = new Reptil();
 ```
 
-`Animal` es la superclase de la que heredan `Mamifero` y `Reptil`. Poseen atributos y métodos en común. Pues todos los objetos creados pueden guardarse en una variable de tipo Animal, puesto que **todas son animales**. También podríamos pasar un `Mamífero` como parámetro en método que tenga como argumento una variable de tipo `Animal`, puesto que `Mamifero` **es un** `Animal`.
+**Ventaja 1:**
 
-> 💡Se podrán guardar variables de un tipo “b” en una variable de tipo “a” siempre que “b” herede de “a”. Siempre para saber si podemos guardar un variable definida como otra clase distinta, nos hacemos la pregunta. ¿La clase “b” **ES UN(A)** “a”?. Por ejemplo, para guardar un objeto Mamífero en una variable de tipo Animal, ¿Un mamífero ES UN animal?. La respuesta es SI, ya que Mamífero hereda de Animal, así que se podrá realizar. ¿Un reptil es un mamífero? NO. Ambas heredan de Animal, pero son clases distintas (hermanos podríamos decir). Así que no podremos crear un objeto de la clase Reptil y guardarlo en una variable de tipo Mamífero, eso provocará un error.
+`Animal` es la superclase de la que heredan `Mamifero` y `Reptil`. Poseen atributos y métodos en común. Pues todos los objetos creados pueden guardarse en una variable de tipo Animal, puesto que **todas son animales**. 
 
-**Un tipo de datos admite valores que sean de otras clases, siempre que sean más concretas y hereden de ella.** Ya sea para albergar valores en variables, para paso de parámetros en una función, etc. 
+> [!tip]
+>
+> Se pueden almacenar variables de un tipo "b" en una variable de tipo "a" si "b" hereda de "a". Para determinar si esto es posible, debemos preguntar: ¿la clase "b" **es un(a)** "a"? Por ejemplo, un `Mamífero` **es un** `Animal`, por lo que se puede guardar. Sin embargo, un `Reptil` no es un `Mamífero`, así que no se puede almacenar un objeto de la clase `Reptil` en una variable de tipo `Mamífero`, lo que generaría un error.
 
-Otra ventaja es la siguiente:
+> [!tip]
+>
+> Esta ventaja de guardar objetos en variables de otras clases se entenderá mejor más adelante, cuando conozcas las colecciones e interfaces.
+
+**Ventaja 2:**
 
 Imaginemos que la clase Animal tiene un método llamado `comer()`.  Tanto los mamíferos como los reptiles, heredan ese método y lo sobrescriben para adaptarlo a sus clases. 
 
 El objeto `a`, es de la clase `Animal` y tiene los atributos y métodos de la clase `Animal`. Entre ellos `comer()`. 
 
-El objeto `b`, es de la `Animal`, pero en su interior hay un `Mamífero`, y al escribir `b.`, el IDE nos mostrará los métodos y atributos de la clase `Animal` y no tendríamos disponibles los métodos propios de los mamíferos, ya que el objeto no es un `Mamífero`. Aunque si tendríamos disponible el método `comer()` puesto que es de todos los animales.
+El objeto `b`, es de la clase `Animal`, pero en su interior hay un `Mamífero`, y al escribir `b.`, el IDE nos mostrará los métodos y atributos de la clase `Animal` y no tendríamos disponibles los métodos propios de los mamíferos, ya que el objeto no es un `Mamífero`. Aunque si tendríamos disponible el método `comer()` puesto que es de todos los animales.
 
 Al llamar a `a.comer()` estamos llamando al método `comer()` de la clase `Animal`, pero al llamar al método `b.comer()`, estamos llamando al método `comer()` de la clase `Mamífero`. Igual para con `c.comer()`, que ejecutaría el propio método `comer()` del `Reptil`.
 
-Aunque todos los objetos sean `Animal`, cada uno ejecutará su propio método en caso de que lo tengan sobrescrito. Esto es debido a que **en tiempo de edición**, el objeto es un `Animal`, puesto que así se ha definido. Pero en **tiempo de ejecución**, se “transforma” en el objeto real que es, y haría una llamada a sus métodos propios y no los que nos dice el IDE que ejecutaría.
+Aunque todos los objetos sean `Animal`, cada uno ejecutará su propio método en caso de que lo tengan sobrescrito. Esto es debido a que **en tiempo de edición**, el objeto es un `Animal` puesto que así se ha definido. Pero en **tiempo de ejecución**, se “transforma” en el objeto real que es, y haría una llamada a sus métodos propios y no los que nos dice el IDE que ejecutaría.
 
-El polimorfismo se entiende mejor con las Colecciones.
+**Ventaja 3:**
+
+También podríamos hacer pasar un `Mamífero` como parámetro en un método que tenga como argumento una variable de tipo `Animal`, puesto que `Mamifero` **es un** `Animal`.
+
+Para verlo mejor, crearemos un ejemplo completo con 3 clases:
+
+- `Animal` es la clase base.
+- `Gato` es una clase que hereda de `Animal`.
+- `Veterinario` tiene un método `examinar()` que acepta un parámetro de tipo `Animal`.
+
+> [!note]
+>
+> Solo hemos las partes estrictamente necesarias para el ejemplo, obviando constructores, getters y setters.
+
+```java
+// Clase Padre Animal.java
+public class Animal {
+    public void hacerSonido() {
+        System.out.println("El animal hace un sonido");
+    }
+}
+
+// Clase Hija Gato.java
+public class Gato extends Animal {
+    @Override
+    public void hacerSonido() {
+        System.out.println("El gato maulla");
+    }
+}
+
+// Clase con un método que acepta un Animal Veteriano.java
+public class Veterinario {
+    public void examinar(Animal animal) {
+        animal.hacerSonido(); // Llama al método hacerSonido
+        System.out.println("Examinando al animal.");
+    }
+}
+
+// Clase principal (Jugamos con todas las clases )
+public class Main {
+    public static void main(String[] args) {
+        Gato miGato = new Gato();
+        Veterinario veterinario = new Veterinario();
+        
+        // Pasamos un objeto Gato a una función que acepta un Animal
+        veterinario.examinar(miGato); // Salida: "El gato maulla" y "Examinando al animal."
+    }
+}
+```
+
+Creamos una instancia de `Gato` y luego la pasamos al método `examinar()` del `Veterinario`, que está diseñado para recibir cualquier tipo de `Animal`.
+
+Este ejemplo muestra claramente cómo un objeto más específico (`Gato`) puede ser pasado a una función (`.examinar()`) que espera un objeto de un tipo más genérico (`Animal`). 
+
+> [!note]
+>
+> Además, al ejecutar la función `examinar()`, se ejecuta la función `.hacerSonido()` de un `Animal` pero como es un `Gato` se ejecuta la función específica del `Gato` en lugar del `Animal`, por eso sale por pantalla “`El gato maúlla`” y no “`El animal hace un sonido`”. Esta es la ventaja 2.
+
+
+
+---
 
 # Clases Abstractas
 
+<img src="img/03-poo/clase-abstracta.jpg" alt="Imagen que representa el diseño de un león, donde no está todo terminado y hay partes que faltan por dibujar, aunque están delineadas" style="zoom: 50%;" />
+
 A veces en una clase, no podemos implementar los métodos de una forma concreta, y queremos que sean las clases hijas las que implementen un comportamiento concreto. Por ejemplo: Sabemos que TODOS los animales deberían tener el método `comer()`. Y además queremos que todas las clases que hereden lo sobrescriban para que el método se adapte a como come cada tipo de animal.
 
-Con lo sabemos ahora, podemos hacer el método en la clase Animal, y **esperar** que las clases hijas lo sobrescriban. Pero no es de obligado cumplimiento. Pueden sobrescribirlo, así tendrían su propio método, o pueden no hacerlo, y así ejecutarían lo implementado en la clase Animal, que no estaría adaptado.
+Con lo sabemos ahora, podemos hacer el método en la clase Animal, y **esperar** que las clases hijas lo sobrescriban. Pero no es de obligado cumplimiento. Pueden sobrescribirlo, así tendrían su propio método o pueden no hacerlo, y así ejecutarían lo implementado en la clase Animal, que no estaría adaptado.
 
-Para **OBLIGAR** a una clase a que sobrescriba los métodos heredados existen los métodos abstractos. Cuando definimos un método abstracto, solo le estamos diciendo EL QUÉ debería tener, pero no EL COMO debería funcionar. Por ejemplo, podemos indicarle a la clase `Animal`, que tendrá un método llamado comer(), que no recibe nada y que no retorna nada. Y listo. No escribimos nada de código en el método. En lugar de abrir llaves y escribir código, escribimos la **firma del método** y terminamos con un punto y coma (;).
+> [!note]
+>
+> **Cuando hablamos de obligar**, es el IDE el encargado de obligarte a sobrescribir los métodos heredados o de lo contrario provocará un error de compilación.
+
+Para **OBLIGAR** a una clase a que sobrescriba los métodos heredados existen los métodos abstractos. Cuando definimos un método abstracto, solo le estamos diciendo EL QUÉ debería tener, pero no EL COMO debería funcionar. 
+
+Por ejemplo, podemos indicarle a la clase `Animal` que tendrá un método llamado `comer()`, que no recibe nada y que no retorna nada. Y listo. No escribimos nada de código en el método. En lugar de abrir llaves y escribir código, escribimos la **firma del método** y terminamos con un punto y coma (;).
 
 Y para indicar que ese método es abstracto, debemos indicarlo con la palabra reservada <kbd>abstract</kbd> después del modificador de acceso.
 
@@ -690,15 +918,27 @@ public abstract class Animal {
 
 **Cuando una clase tiene al menos un método abstracto, la clase también deberá declararse como abstracta.** Por esa razón, en cuanto le ponemos el `abstract` en el método `comer()`, el IDE nos obligará a poner `abstract` también en la clase. 
 
-Esto **obligará** a todas las clases que hereden de la clase abstracta, a que tengan que sobrescribir **obligatoriamente** el método abstracto y a definir su comportamiento. Ya no podremos elegir si sobrescribir el método o no. Tendremos que hacerlo. Al forzarlo, nos aseguramos que todos los clases que hereden de la clase abstracta tendrán método el cual estará adaptado a sus necesidades.
+Esto **obligará** a todas las clases que hereden de la clase abstracta, a que tengan que sobrescribir **obligatoriamente** el método abstracto y a definir su comportamiento. Ya no podremos elegir si sobrescribir el método o no. Tendremos que hacerlo. Al forzarlo, nos aseguramos que todos los clases que hereden de la clase abstracta tendrán método y además estará adaptado a sus necesidades.
 
 Como la clase abstracta puede tener métodos abstractos (es posible que no los tenga), **no se podrán instanciar objetos de una clase abstracta**. Tiene sentido, ya que, ¿que pasaría si hacemos una llamada a un método que no está implementado?. 
 
->  💡 Al no poderse instanciar objetos de una clase abstracta, es un buen mecanismo para impedir que se creen objetos de una clase genérica, obligando a usar clases más especializadas que tengan sus métodos concretos definidos. Por ejemplo, no queremos que se puedan crear objetos Animal, ya que es muy genérica, así obligamos a que los objetos que usemos sean más específicos.
+>  [!tip]
+>
+>  Al no poderse instanciar objetos de una clase abstracta, es un buen mecanismo para impedir que se creen objetos de una clase genérica, obligando a usar clases más especializadas que tengan sus métodos concretos definidos. Por ejemplo, no queremos que se puedan crear objetos `Animal`, ya que es muy genérica y así obligamos a que los objetos que usemos sean más específicos (`Mamífero`, `Reptil`, `Ave`, etc.).
+>
+>  <img src="img/03-poo/clase-abstracta2.jpg" alt="Imagen" style="zoom: 25%;" />
+
+
+
+---
 
 # Interfaces
 
-En las interfaces se especifica qué se debe hacer pero no su implementación. Serán las clases que implementen estas interfaces las que describen la lógica del comportamiento de los métodos. En otras palabras, **es una “clase” en la que todos sus métodos son abstractos**. 
+En las interfaces se especifica qué se debe hacer pero no su implementación (como se debe hacer). Serán las clases que implementen estas interfaces las que describen la lógica del comportamiento de los métodos. En otras palabras, **es una “clase” en la que todos sus métodos son abstractos**. 
+
+> [!tip]
+>
+> 📃🖊️Una **interfaz** en Java es como **un contrato que define qué métodos debe tener una clase**, pero sin decir cómo deben funcionar esos métodos. Las clases que implementan una interfaz se comprometen a escribir el código de esos métodos, asegurando que siguen ese contrato.
 
 Una interfaz puede tener atributos, pero deberán ser constantes. Aunque no es muy común.
 
@@ -707,7 +947,7 @@ Las interfaces, al igual que las clases abstractas, **no pueden ser instanciadas
 Las interfaces se definen de la siguiente forma:
 
 - Se crea un nuevo archivo, como si fuéramos a crear una clase, pero en lugar de `class`, se escribe `interface`:
-- Se describe la firma de los métodos y se terminan en ;. No se escribe su implementación. 
+- Se describe la firma de los métodos y se terminan en `;` y no con las llaves `{}`. No se escribe su implementación. 
 - Se considera que todos los métodos son `public` y `abstract` por definición, por lo que no es necesario indicarlo.
 
 ``` java
@@ -718,7 +958,7 @@ public interface NombreInterfaz {
 }
 ```
 
-**Cualquier clase que implemente la interfaz deberá sobrescribir los métodos abstractos definidos por la interfaz.**
+**Cualquier clase que implemente la interfaz deberá sobrescribir los métodos abstractos definidos por la interfaz.** Te obligará el IDE.
 
 Las interfaces se implementan con la palabra reservada <kbd>implements</kbd>.
 
@@ -762,7 +1002,7 @@ public interface Nave {
 ```
 
 ```java
-public class NaveJugador implements Nave {
+public class HalconMilenario implements Nave {
     public void moverPosicion(int x, int y) {
         // Implementamos el método
         this.posActualX -= x;
@@ -775,7 +1015,7 @@ public class NaveJugador implements Nave {
 }
 ```
 
-La clase `NaveJugador`, implementa la interfaz `Nave`, por lo que **debe** sobrescribir los métodos abstractos definidos por la interfaz.
+La clase `HalconMilenario`, implementa la interfaz `Nave`, por lo que **debe** sobrescribir los métodos abstractos definidos por la interfaz.
 
 Además podríamos hacer otra interfaz `MotorHiperespacio`, para dotar a nuestra nave de un nuevo método para saltar al Hiperespacio.
 
@@ -786,14 +1026,14 @@ public interface MotorHiperespacio {
 ```
 
  ```java
- public class NaveJugador implements Nave, MotorHiperespacio {
+ public class HalconMilenario implements Nave, MotorHiperespacio {
     public void moverPosicion(int x, int y) {...}
     public void disparar(){...}
     public void saltarHiperespacio(){...}    
  }
  ```
 
-Podemos entender las interfaces como funcionalidades que le podemos dar a las clases, sin que estas tengan que estar relacionadas entre si a través de la herencia. Por ejemplo, podríamos hacer que una clase que NO ES UNA NAVE, pudiese tener el método para saltar al hiperespacio.
+**Podemos entender las interfaces como funcionalidades que le podemos dar a las clases**, sin que estas tengan que estar relacionadas entre si a través de la herencia. Por ejemplo, podríamos hacer que una clase que NO ES UNA NAVE, pudiese tener el método para saltar al hiperespacio.
 
 ```java
 public class Superman implements MotorHiperespacio {
@@ -802,11 +1042,17 @@ public class Superman implements MotorHiperespacio {
 }
 ```
 
-Ahora, tanto `NaveJugador`, como `Superman`, que son clases que no tienen ninguna relación de herencia, ambas tienen el método `saltarHiperespacio()`. Porque ambas implementan la interfaz `MotorHiperespacio`, la cual les obliga a implementar su método.
+Ahora, tanto `HalconMilenario` como `Superman` son clases que no tienen ninguna relación de herencia pero ambas tienen el método `saltarHiperespacio()`. Porque ambas implementan la interfaz `MotorHiperespacio`, la cual les obliga a implementar su método.
 
 Mezclando las capacidades de la herencia, las clases abstractas y las interfaces, podremos crear esquemas jerárquicos complejos, reaprovechando código de una forma muy eficaz. 
 
+> [!tip]
+>
+> 🔮Aunque con clases simples no se aprecie del todo el poder de la herencia, las clases abstractas y las interfaces, **lo importante es entender los conceptos** y usar la imaginación, ya que en el futuro, con jerarquías más grandes, su verdadero potencial será clave.
 
+
+
+---
 
 # Miembros estáticos
 
@@ -828,6 +1074,10 @@ public class Main {
 ```
 
 Se puede ver que no hemos necesitado instanciar un objeto de la clase `Math` para poder usar el atributo  `Math.PI` y el método `Math.pow()` para calcular el área. **Ambos son estáticos**. Para hacer referencia a ellos, tan solo hay que poner el nombre de la clase, un punto y el nombre del miembro.
+
+> [!note]
+>
+> La función `println()` es un método de un atributo estático (`out`) que pertenece a la clase `System`. Por eso no tenemos que instanciar objetos de la clase `System` para imprimir por pantalla. Por otro lado, con `Scanner` sí es necesario crear instancias, ya que no tiene un atributo estático como `System.out`.
 
 Para definir un atributo o método como estático, tan solo debemos anteponer la palabra `static` después del modificador de acceso en la definición del mismo.
 
@@ -859,6 +1109,20 @@ public class Main {
 }
 ```
 
-En el ejemplo estamos usando las constantes que hemos definido en la clase `Color`, sin tener que instanciar un objeto de la clase `Color`.
+En el ejemplo estamos usando las constantes que hemos definido en la clase `Color`, sin tener que instanciar un objeto de la clase `Color`. 
+
+Además, el IDE hace parte del trabajo ayudando a no tener que recordar ni los nombres ni los valores de los atributos de clase.
+
+<img src="img/03-poo/image-20240923144243467.png" alt="image-20240923144243467" style="width:60%;" />
+
+> [!important]
+>
+> En este caso, no necesitamos getters ni setters puesto que declaramos los atributos como `public final`, lo cual da libre acceso de lectura pero no de escritura.
+
+> [!tip]
+>
+> 🤓El método `main` es estático en Java porque es el **punto de entrada** del programa y debe poder ejecutarse sin necesidad de crear una instancia de la clase que lo contiene. Al ser estático, la JVM (Java Virtual Machine) puede llamarlo directamente usando solo el nombre de la clase, sin tener que crear objetos de esa clase, lo cual es necesario para que el programa pueda arrancar. Poco a poco se van atando todos los cabos sueltos 🪢.
+
+
 
 En resumen, los métodos y atributos estáticos en Java son útiles para proporcionar información y funcionalidades comunes a todos los objetos de una clase sin necesidad de crear un objeto específico.
