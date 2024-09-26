@@ -439,11 +439,7 @@ int media = 7 + 2 + 0 + 7 / 2; // media = 12
 
 > [!CAUTION]
 >
-> ⚠️Cuidado con el orden de las operaciones. Lo veremos más adelante.
-
-> [!tip]
->
-> En Java, 
+> Precaución con la prioridad de las operaciones matemáticas. Lo veremos más adelante.
 
 
 
