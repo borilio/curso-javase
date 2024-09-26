@@ -90,6 +90,7 @@ En estos ejemplos:
 
 ---
 
-# {{Novedad novedosa}}
+# 👷En construcción 🚧
 
-Aquí introduciremos una nueva novedad novedosa de Java en sus últimas versiones.
+Esta sección está en constante evolución. Aquí iremos creando nuevas secciones cuando aparezcan o descubramos novedades importantes sobre las últimas versiones de java.
+
