@@ -44,3 +44,19 @@
     max-width: 100%;
     height: auto;
 }
+
+header {
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo opaco */
+    padding: 10px; /* Espaciado interno */
+    z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+}
+
+/* Para que no salgan textos debajo de la cabecera */
+#top {
+    margin-bottom: 3rem;
+}
+
+/* Aplica un margen adicional cuando usamos los enlaces internos */
+h1, h2, h3, h4, h5, h6 {
+    scroll-margin-top: 80px; 
+}
