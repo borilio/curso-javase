@@ -2,7 +2,7 @@
 
 
 
-## Temario troncal
+## 🪵Temario troncal
 
 En esta parte troncal del curso, exploraremos los fundamentos y conceptos esenciales de la programación en Java SE. Desde la sintaxis básica hasta las estructuras de datos avanzadas, este módulo está diseñado para proporcionar una comprensión sólida y completa del lenguaje Java. 
 
@@ -17,13 +17,15 @@ En esta parte troncal del curso, exploraremos los fundamentos y conceptos esenci
 
 
 
-## Píldoras: Exploraciones adicionales
+## 💊Píldoras: Exploraciones adicionales
 
 Las píldoras de información son secciones breves y concisas que complementan la parte troncal del curso. Aquí encontrarás temas específicos y avanzados que no se abordan en profundidad en el módulo principal, pero que son igualmente importantes para convertirte en un desarrollador Java completo.
 
-| Descripción | Documento                               |
-| ----------- | --------------------------------------- |
-| 🧩Funciones  | [Enlace](md/pildoras/funciones.md) |
+| Descripción   | Documento                             |
+| ------------- | ------------------------------------- |
+| 🆕Novedades    | [Enlace](md/pildoras/novedades.md)    |
+| 🧩Funciones    | [Enlace](md/pildoras/funciones.md)    |
+| 👱Clase Object | [Enlace](md/pildoras/clase-object.md) |
 
 
 
