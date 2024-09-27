@@ -50,7 +50,7 @@ public class Persona {
 
 ---
 
-## 🔵 `hashCode()`
+## 🔵`hashCode()`
 
 El método `hashCode()` es un método de la clase `Object` que devuelve un valor entero, conocido como el **código hash** del objeto. Sirve para identificar de forma unívoca al objeto dentro de la memoria. No hay dos objetos distintos que tengan el mismo hashcode.
 
