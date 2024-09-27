@@ -27,6 +27,10 @@ Para superar dichas limitaciones, utilizamos las Colecciones.
 - **Mejoran la calidad del código:** Usamos clases que ya están muy probadas y refinadas en su funcionamiento y eficiencia.
 - **Reusabilidad:** Las colecciones se pueden usar en diferentes partes de un programa o en diferentes programas, lo que permite compartir y pasar objetos fácilmente. Por ejemplo, si una parte del programa devuelve una lista de usuarios, otra parte puede usar esa misma lista sin problemas. Esto hace que el código sea más fácil de entender y mantener, ya que no necesitas crear estructuras diferentes cada vez.
 
+
+
+---
+
 # Vista general
 
 El esquema de colecciones de Java es muy complejo, y veremos tan solo algunas implementaciones de las interfaces más comúnmente usadas.
@@ -39,6 +43,10 @@ En Java, la **interfaz `Collection`** es la base para las colecciones de tipo **
   - **`Set`**  es implementada por la clase **`TreeSet`**.
   - **`List`** es implementada por la clase **`ArrayList`**.
 - **`Map`** es otra interfaz diferente a `Collection` y es implementada por la clase **`HashMap`**. La interfaz `Map` no implementa la interfaz `Collection` porque su propósito es un poco diferente. Ahora las veremos todas.
+
+
+
+---
 
 # Operaciones comunes
 
@@ -79,6 +87,10 @@ El bucle `for…each` anterior imprimiría en cada vuelta los nombres del array 
 
 Si necesitamos recorrer el array o colección de una forma que no sea estrictamente secuencial, por ejemplo, recorrerla al revés o de dos en dos, como necesitamos acceder a posiciones concretas del array, no podríamos usar el `for…each` y necesitaríamos un `for` tradicional y para poder manejar el índice.
 
+
+
+---
+
 # List
 
 Son colecciones basadas en índices, como los arrays (de ahí su nombre), que permiten duplicados y se almacenan en base a una posición. 
@@ -112,6 +124,9 @@ List<String> lista = new ArrayList<>();
 Así estamos creando el objeto `lista`, que será un `ArrayList` que contendrá `String`. Inicialmente se crea un `ArrayList` vacío, y deberemos añadirle elementos con el método <kbd>add</kbd>. Como le hemos indicado que será una colección de `String`, el método `add` sólo admitirá objetos de esa clase.
 
 ```java
+// Creamos la lista vacía inicialmente
+List<String> lista = new ArrayList<>();
+
 // Añadimos objetos a la lista
 lista.add("Tony");
 lista.add("Bruce");
@@ -157,6 +172,10 @@ La colección `List`, posee todos los métodos comunes que hemos descrito con an
 >
 > Encontrarás un [resumen de todos los métodos comunes](#Resumen de métodos) de las colecciones al final del documento.
 
+
+
+---
+
 # Set
 
 La colección Set tiene como principal característica que no admite duplicados y que algunas de sus implementaciones mantienen sus elementos ordenados. Su implementación más común es la clase **[TreeSet](https://docs.oracle.com/javase/8/docs/api/java/util/TreeSet.html)**. También existe la clase **[HashSet](https://docs.oracle.com/javase/8/docs/api/java/util/HashSet.html)**, que es más rápida que la clase TreeSet pero no es muy versátil.
@@ -201,9 +220,56 @@ frutas.add("Plátano"); // Elemento repetido, no lo añade
 System.out.println(frutas); // [Arándano, Calabaza, Plátano, Zanahoria]
 ```
 
-## TreeSet de Objetos no primitivos
 
-Pero ahora nos asalta una duda, expongamos el problema. Tengo la siguiente clase:
+
+## Acceder a los elementos de un TreeSet
+
+No están basando en índices como los `List` y no podemos acceder directamente a un elemento concreto de un `TreeSet`. Tendremos que recorrer el conjunto de forma secuencial.
+
+- ⭐**Usando un bucle `for-each`:**
+
+  ```java
+  Set<Integer> numeros = new TreeSet<>();
+  numeros.add(1);
+  numeros.add(2);
+  numeros.add(3);
+  
+  for (Integer num : numeros) {
+      System.out.println(num);  // Accede a los elementos uno a uno
+  }
+  ```
+
+  Esta forma es más simple que la siguiente, ya que usamos un bucle que “se mueve solo” y no necesita ni índices ni objetos ni métodos adicionales (como el siguiente). Lo usaremos cuando tengamos que recorrer completamente el `Set`.
+
+  > [!warning]
+  >
+  > No podrás eliminar elementos de una colección (de cualquier tipo) mientras la recorres con un `for-each`. Si intentas hacerlo directamente, obtendrás una excepción de tipo `ConcurrentModificationException`.
+
+
+
+- **Usando un `iterator`:**
+
+  ```java
+  Iterator<Integer> iterador = numeros.iterator();
+  while (iterador.hasNext()) {
+      System.out.println(iterador.next());  // Accede a los elementos usando el iterador
+  }
+  ```
+
+  El objeto `iterator` es como un puntero que está posicionado antes del primer elemento. 
+
+  - El método `next()` del `Iterator` **devuelve el siguiente elemento** de la colección y **avanza el puntero** del iterador al elemento siguiente. Si lo llamas repetidamente, irás obteniendo los elementos uno por uno hasta que llegues al final de la colección.
+  - El método `hasNext()` del `Iterator` comprueba si **hay más elementos** en la colección que se está recorriendo. **Devuelve `true` si hay un siguiente elemento** disponible y `false` si no hay más. Es como preguntar: "¿Queda algo más por recorrer?". Se usa comúnmente como condición en un `while` para asegurarse de que no intentamos acceder a elementos cuando ya hemos llegado al final de la colección.
+
+  > [!tip]
+  >
+  > Con un iterador si puedes eliminar elementos de la colección mientras lo recorres, usando el método `iterator.remove()`.
+
+
+
+## TreeSet de Objetos no primitivos (Comparable)
+
+Expongamos un problema. Tengo la siguiente clase:
 
 ```java
 public class Persona {
@@ -213,7 +279,7 @@ public class Persona {
 }
 ```
 
-Y ahora hago una colección TreeSet de `Persona`. Hasta aquí todo normal. Es lo mismo que antes.
+Y ahora hago una colección TreeSet de `Persona`. Hasta aquí todo normal. Es lo mismo que antes pero en lugar de primitivos usamos una clase nuestra.
 
 ````java
 Set<Persona> lista = new TreeSet<>();
@@ -222,7 +288,7 @@ lista.add(new Persona("Tom", 25));
 lista.add(new Persona("Andrew", 38));
 ````
 
-Las preguntas son:
+Hemos dicho que la colección TreeSet mantiene sus elementos ordenados, pero nos asaltan varias preguntas.
 
 - ¿Como sabe Java si una persona es igual a otra para añadirla o no a la lista? 
 - ¿Qué criterios usará para ordenarla? 
@@ -231,9 +297,7 @@ Las preguntas son:
 
 La respuesta a la primera pregunta es que **NO SABE HACERLO**, por lo que dará un fallo y no hará nada de lo siguiente.
 
-## Interfaz Comparable
-
-**Para poder hacer una colección TreeSet, el objeto deberá implementar la interfaz <kbd>Comparable</kbd>**. Al implementarla, nos obligará a desarrollar un método llamado `compareTo`, el cual decidirá si un objeto de su misma clase es **menor, igual o mayor** que otro recibido. Nosotros deberemos escribir la lógica de la comparación eligiendo el criterio que queramos. Por ejemplo, podremos decidir si *Andrew* es menor que *Tom* porque alfabéticamente va antes, o si *Tom* debería ir el primero en la lista, por ser el ~~mejor~~ más joven.
+**Para poder hacer una colección TreeSet, el objeto deberá implementar la interfaz <kbd>Comparable</kbd>**. Al implementarla, nos obligará a desarrollar un método llamado `compareTo()`, el cual decidirá si un objeto de su misma clase es **menor, igual o mayor** que otro recibido. Nosotros deberemos escribir la lógica de la comparación eligiendo el criterio que queramos. Por ejemplo, podremos decidir si *Andrew* es menor que *Tom* porque alfabéticamente va antes, o si *Tom* debería ir el primero en la lista, por ser el ~~mejor~~ más joven.
 
 El método `compareTo` recibirá una objeto de la misma clase (`Persona` en nuestro ejemplo) y retornará un entero. Ese entero deberá seguir los siguientes criterios:
 
@@ -283,6 +347,9 @@ Todavía nos queda una duda… ¿Por qué en las colecciones que hicimos de ejem
 - No permiten acceso aleatorio. Sólo secuencial.
 - No permiten acceso por índice.
 
+
+
+---
 
 # Map
 
@@ -368,6 +435,8 @@ Ya es decisión de usar la forma que mejor se adapte a la lógica de nuestra apl
 - Permiten búsqueda rápida por clave.
 - Flexibilidad al tener claves y valores de distintos tipos.
 
+---
+
 
 # ¿Cual colección usar?
 
@@ -377,7 +446,7 @@ Algunas clases o interfaces no se han visto en el curso. Pero si se ajustan a lo
 
 ![Decisión-Colecciones](img/04-colecciones/01.png)
 
-
+---
 
 # Resumen de métodos
 
@@ -462,4 +531,18 @@ Un resumen de los métodos más comunes en las colecciones de Java, cada uno con
   ```
 
 
+
+---
+
+# Resumen características
+
+Esta tabla te ayudará a comparar las principales diferencias entre estos tres tipos de colecciones y sus implementaciones más comunes.
+
+| Característica           | List                                     | Set                                                | Map                            |
+| ------------------------ | ---------------------------------------- | -------------------------------------------------- | ------------------------------ |
+| **Implementación común** | `ArrayList`                              | `TreeSet`                                          | `HashMap`                      |
+| **Permite duplicados**   | Sí                                       | No                                                 | No (claves no, valores si)     |
+| **Están ordenados**      | Sin orden natural                        | Según el orden natural de sus elementos            | No                             |
+| **Método de acceso**     | Por índice                               | Secuencial                                         | Pares clave-valor              |
+| **Caso de uso común**    | Lista de elementos accesibles por índice | Conjunto único de elementos secuenciales ordenados | Asociación de claves y valores |
 
