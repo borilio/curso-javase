@@ -18,9 +18,17 @@
     <script>
         (function() {
             const currentPath = window.location.pathname;
+            const host = window.location.host;
 
-            // Verificar si no estamos ya en /404.html
-            if (!currentPath.endsWith("/404.html")) {
+            // Verificamos si estamos en GitHub Pages
+            const isGitHubPages = host.includes("github.io");
+
+            // Si estamos en GitHub Pages y no estamos en /curso-javase/404.html
+            if (isGitHubPages && !currentPath.endsWith("/curso-javase/404.html")) {
+                window.location.href = "/curso-javase/404.html";
+            }
+            // Si estamos en cualquier otro servidor y no estamos en /404.html
+            else if (!isGitHubPages && !currentPath.endsWith("/404.html")) {
                 window.location.href = "/404.html";
             }
         })();
