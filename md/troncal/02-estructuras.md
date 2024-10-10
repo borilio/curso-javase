@@ -295,7 +295,7 @@ Con `switch` nos ahorramos unos cuantos `if` anidados, obteniendo así una estru
 
 ## Instrucción repetitiva While
 
-Se crea con la instrucción <kbd>while</kbd>. Ejecuta un bloque se instrucciones **mientras** la condición evaluada sea verdadera. Cuando la condición sea falsa, el bucle terminará y dejará de ejecutarse. **La condición se evalúa antes de entrar**.
+Se crea con la instrucción <kbd>while</kbd>. Ejecuta un bloque de instrucciones **mientras** la condición evaluada sea verdadera. Cuando la condición sea falsa, el bucle terminará y dejará de ejecutarse. **La condición se evalúa antes de entrar**.
 
 ![estructura-while](img/02-estructuras/estructura-while.gif)
 
@@ -352,7 +352,7 @@ do {
 
 ```java
 Scanner teclado = new Scanner(System.in);
-System.out.println("Introduce una opción (1-6): ")
+System.out.println("Introduce una opción (1-6): ");
 int opcion;
 do {
 	opcion = teclado.nextInt();
