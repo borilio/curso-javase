@@ -40,9 +40,19 @@
     background-color: #4e5965; /* Gris oscuro */
     padding: 20px 0;
 }
+
 .footer-logo {
+    max-height: 60px;
     max-width: 100%;
-    height: auto;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+}
+
+.footer .col-4 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 header {
